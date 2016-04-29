@@ -1,0 +1,82 @@
+#container{
+  width:900px;
+  margin:0px auto;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  background-image: url("login.jpg");
+  background-repeat: no-repeat;
+}
+
+
+#header{
+  width:100%;
+  height: 2%;
+  display:inline-block;
+  background:white;
+}
+
+h1{
+  width:40%;
+  display: inline-block;
+  margin-left:40px;
+}
+#header ul,li{
+  margin-top:15px;
+  display: inline-block;
+  padding:0% 2%;
+  float:right;
+}
+#header ul{
+  width: 40%;
+}
+
+#header a{
+  text-decoration: none;
+  color:#009999;
+}
+
+#header a:hover {
+  color: hotpink;
+}
+
+#header li{
+  border-right:solid 1px;
+}
+
+body{
+  margin:0px;
+}
+
+form{
+  margin-top: 50px;
+  width: 350px;
+  border: solid 1px black;
+  padding: 20px;
+  border-radius: 20px;
+  background:rgba(255, 255, 255, 0.75);
+}
+
+#main{
+  margin-top: 50px;
+  height: 700px;
+}
+
+#registration{
+  width: 300px;
+}
+
+.form-group{
+  width: 300px;
+}
+
+#main > div > div.col-md-5.col-md-offset-1{
+  margin-left:0px;
+}
+
+#main > div > div.col-md-6{
+  margin-left:50px;
+}
+
+#main > div > div.col-md-6 > form > div:nth-child(3) > div{
+  width:auto;
+  align:left;
+}
