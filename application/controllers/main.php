@@ -73,9 +73,6 @@ class main extends CI_Controller {
 				$email1=trim($splitemail[1],",");
 				$email=trim($email1,">");
 				$exists= $this->users->check_email_exists($email);
-
-				var_dump($exists);
-				die();
 				if(empty($exists)){
 					$this->users->create_new_participant($first,$last,$email);
 					$newuser= $this->users->get_newuser_id();
