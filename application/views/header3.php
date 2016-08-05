@@ -50,8 +50,9 @@
 
 				 <div id="resp-menu" class="responsive-menu">
 						<ul>
-							<li><a href="/">HOME</a></li><br>
+							<li><a href="/access/logout">Logout</a></li>
 							<li><a href="/display/loaddashboard">Dashboard</a></li>
+							<li><a href="/"><i class="fa fa-home"></i></i></a></li>
 						</ul>
 				 </div>
 			</div>

@@ -5,6 +5,7 @@
     color: white;
     padding-top: 5%;
     height: 900%;
+    width:100%;
     padding-bottom: 5%;
 }
 #dashboard-container {
@@ -44,6 +45,17 @@
     width: 60%;
 }
 
+#menu-btn{
+    border:none;
+    outline:none;
+    z-index: 0;
+}
+
+#mobile-nav{
+    height: 20px !important;
+    display: inline-block;
+}
+
 /*Tabs*/
 
 #tabs ul li {
@@ -70,7 +82,7 @@
 #tabs {
     padding: 0px;
     border: none;
-    height: 30%;
+    height: 82%;
 }
 #tabs> ul {
     border: none;

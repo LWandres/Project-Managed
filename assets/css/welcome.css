@@ -405,14 +405,13 @@ figure.effect-chico:hover figcaption::before, figure.effect-chico:hover p {
         position: fixed;
         right: 5%;
         display: inline-block;
-        background: MEDIUMTURQUOISE;
+        background: black;
         border-radius: 5px;
         width: 150px;
         padding-bottom: 1%;
         text-align: center;
         z-index: 1015 !important;
-        margin-top: 5%;
-        border: solid 3px white;
+        margin-top: 2%;
     }
     .responsive-menu li {
         display: inline-block;
