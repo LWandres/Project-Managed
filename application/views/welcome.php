@@ -1,90 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>Welcome to Project Managed</title>
-	<link rel="stylesheet" type="text/css" href="/assets/welcome.css">
-</head>
-	<body>
-	<div id="container">
-		<div id="header">
-			<h1>Project Managed.</h1>
-				<ul>
-					<li><a href="#">Contact Us </a></li>
-					<li><a href="#">Resources </a></li>
-					<li><a href="/login">Log In </a></li>
-					<li><a href="#">Home </a></li>
-				</ul>
-				<div class="image">
-					<img src="assets/bannerhome.jpg" alt="bannerphoto" height="10%" width="100%">
-					<h2>Revolutionize<br/></h2>
-					<h5>your workday</h5>
-				</div>
-		</div>
+<!-- header partial -->
+<?php include_once("header.php"); ?>
+<!-- End header partial -->
 
-		<div id="top">
-			<div class="box">
-				<h3>30,000 Foot View</h3>
-				<p>Being a project manager is no easy feat. From back-to-back meetings, perpetual follow ups, and putting out fires, life can get hectic. Enter Project Managed. We're here to help you automate your work."</p>
-			</div>
-			<div class="box">
-				<iframe width="250" height="215"
-					src="http://www.youtube.com/embed/UBr3MM9_zd4?autoplay=0">
-				</iframe>
-				<p> Tired of this? Check us out.</p>
-			</div>
-		</div>
+<div class="image">
+	<img src="assets/images/bannerhome.jpg" alt="bannerphoto" width="105.3%">
+	<h2>Revolutionize<br/></h2>
+	<h5>your workday</h5>
+</div>
 
-		<div id="middle">
-      <ul>
-        <li><img src="assets/plan.png" class="circles" alt=""/><h4>PREP</h4></li>
-        <li><img src="assets/meet.png" class="circles" alt=""/><h4>MEET</h4></li>
-        <li><img src="assets/sleep.png" class="circles" alt=""/><h4>SLEEP</h4></li>
-        <li><img src="assets/repeat.jpg" class="circles" alt=""/><h4>REPEAT</h4></li>
-      </ul>
-			<div class="details">
-				<ul>
-					<li>Automate Agendas</li>
-					<li>Notify Stakeholders</li>
-					<li>Email Integration</li>
-				<ul>
-			</div>
+<div id="top">
+	<div class="box-left col-md-5">
+		<i class="fa fa-plane" aria-hidden="true"></i>
+		<h3>30,000 Foot View</h3>
+		<p>Being a project manager is no easy feat. From back-to-back meetings, perpetual follow ups, and putting out fires, life can get hectic.
+			<p>Enter <span class="highlight">Project Managed</span>. We're here to help you automate busy work so you can focus on the important things.</p>
+			<p><span class="highlight"> Take control back over your meetings.</span>
+				<br> Check us out- 100% free.</p>
+	</div>
 
-			<div class="details">
-				<ul>
-					<li>Consolidated Notes</li>
-					<li>Address Priorities</li>
-					<li>Address Follow Ups</li>
-				<ul>
-			</div>
-
-			<div class="details">
-				<ul>
-					<li>Automate Follow Ups</li>
-					<li>Follow Up Reminders</li>
-					<li>Centralized Notes</li>
-					<li>
-				<ul>
-			</div>
-
-			<div class="details">
-				<ul>
-					<li>Support Recurring Meetings</li>
-					<li>Multi-Task Projects</li>
-					<li>Crush at PM Skills</li>
-				<ul>
-			</div>
-    </div>
-
-		<div id="contact">
-				<ul>
-					<li><img src="assets/facebook.png" class="circles" alt=""/></li>
-					<li><img src="assets/twitter.png" class="circles" alt=""/></li>
-					<li><img src="assets/linkedin.png" class="circles" alt=""/></li>
-					<li><img src="assets/google.png" class="circles" alt=""/></li>
-					</ul>
-				<ul>
+	<div class="box-right">
+		<div class="grid">
+			<figure class="effect-chico">
+				<img src="assets/images/Prep.jpg" alt="img15" />
+				<figcaption>
+					<h2>Prep</h2>
+					<p> Streamlines Agenda Creation & Reduces Communication overhead & email volumes</p>
+					<a href="#">View more</a>
+				</figcaption>
+			</figure>
+			<figure class="effect-chico">
+				<img src="assets/images/meet.jpg" alt="img04" />
+				<figcaption>
+					<h2>MEET</h2>
+					<p>Centralize Notes, Track Priorities, Track Follow Ups</p>
+					<a href="#">View more</a>
+				</figcaption>
+			</figure>
+			<figure class="effect-chico">
+				<img src="assets/images/sleep.jpg" alt="img15" />
+				<figcaption>
+					<h2>SLEEP</h2>
+					<p>While you sleep, PM will send out meeting reminders & follow ups</p>
+					<a href="#">View more</a>
+				</figcaption>
+			</figure>
+			<figure class="effect-chico">
+				<img src="assets/images/repeat.jpg" alt="img15" />
+				<figcaption>
+					<h2>REPEAT</h2>
+					<p>Support for Recurring Meetings & Overlapping Projects</p>
+					<a href="#">View more</a>
+				</figcaption>
+			</figure>
 		</div>
 	</div>
+</div>
+
+</div>
 </body>
 </html>

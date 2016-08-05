@@ -1,0 +1,215 @@
+/*Main DIVs*/
+
+#background {
+    background: mediumturquoise;
+    height: 8000px;
+    color: white;
+    margin-top: 5%;
+}
+#notes-container {
+    width: 1000px;
+    margin-top: 5%;
+    margin: 0px auto;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+#main {
+    margin-top: 50px;
+    height: 700px;
+    background: white;
+    margin: 20px;
+    border: solid 1px silver;
+}
+#meetingname {
+    padding: 0px;
+    margin: 0px;
+    font-size: 2.4em;
+    text-shadow: none;
+}
+#agenda {
+    margin-top: 30px;
+    width: 1000px;
+    background: white;
+    border-radius: 10px;
+    border: solid 1px silver;
+    padding: 8%;
+    color: black;
+}
+#date {
+    padding: 1%;
+    font-size: 1.2em;
+    margin-bottom: 2%;
+}
+#agenda ul li {
+    float: none;
+}
+
+/*Header*/
+
+#header {
+    color: black;
+}
+#header ul, li {
+    margin-top: 15px;
+    display: inline-block;
+    padding: 0% 2%;
+    float: right;
+}
+#header ul {
+    width: 40%;
+}
+#header a {
+    text-decoration: none;
+    color: #009999;
+}
+
+/*//end header*/
+
+
+/*Inputs and forms*/
+
+#notes-container> div.email> form {
+    display: inline-block;
+    width: 20%;
+    margin-left: 70%;
+    margin-top: 5%
+}
+.email {
+    margin-left: 60%;
+    display: inline-block;
+}
+.email form {
+    display: inline-block;
+}
+#notes-container> div.email> form:nth-child(2) {
+    margin: 0px;
+}
+#notes-container> div.email> form> input[type="submit"] {
+    border: none;
+    padding: 10px;
+    background: teal;
+    color: white;
+    display: inline-block;
+    width: 100px;
+}
+#agenda> form> input[type="submit"] {
+    float: right;
+}
+#tabs ul li {
+    float: none;
+}
+h2 {
+    margin-left: 20px;
+    padding: 20px;
+}
+input {
+    display: inline-block;
+}
+textarea {
+    vertical-align: top;
+    font-size: .80em;
+    border: solid 1px silver;
+    resize: none;
+    vertical-align: top;
+    width: 100%;
+    height: 100%;
+    padding: 3%;
+}
+table {
+    padding: 10px;
+}
+input {
+    padding: 0px;
+    margin: 0px;
+}
+input[type=date] {
+    height: 25px;
+    width: 140px;
+}
+.objectives, .goals, .attendees {
+    margin-bottom: 2%;
+    padding: 2%;
+    font-size: 1.2em;
+}
+#agenda> form> div.goals> textarea, #agenda> form> div.objectives> textarea {
+    height: 300px;
+}
+.attendees input[type=submit] {
+    margin-left: 450px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.Agenda {
+    margin-bottom: 2%;
+    padding: 2%;
+    height: 650px;
+    font-size: 1.2em;
+}
+.FollowUps {
+    margin-top: 0px;
+    padding-top: 0px;
+    width: 100%;
+}
+.FollowUps table {
+    vertical-align: top;
+    width: 100%;
+}
+.FollowUps input[name=updatefollowup] {
+    background: green;
+    color: white;
+    padding: 5px;
+}
+.FollowUps input[id='follow'] {
+    width: 300px;
+}
+.FollowUps th {
+    width: 35%;
+    text-align: left;
+}
+.FollowUps input[type="text"] {
+    width: 50%;
+}
+#agenda> div> form> div> table> thead> tr:nth-child(1)> th:nth-child(3) {
+    width: 12%;
+}
+#agenda> div.attendees> form {
+    border: 0px;
+}
+#container> div.email> form> input[type="button"] {
+    display: inline-block;
+    border-radius: 5px;
+}
+a[name="back"] {
+    float: right;
+    font-size: 1.2em !important;
+    text-decoration: none !important;
+    margin-left: 500px;
+}
+.add_field_button {
+    background: #337ab7 !important;
+    border: solid 1px #337ab7;
+    padding: 6px !important;
+    border-radius: 5px !important;
+    color: white !important;
+}
+#container> div.email> a {
+    margin-left: 500px;
+}
+html input[type=button], input[type=submit] {
+    background: #337ab7 !important;
+    border: solid 1px #337ab7;
+    padding: 6px !important;
+    border-radius: 5px !important;
+    color: white !important;
+}
+
+/*Rich Text Editor*/
+
+iframe {
+    height: 100% !important;
+}
+#new_meeting_form> form> textarea {
+    height: 400px;
+}
+#mceu_143 {
+    padding-bottom: 10%;
+}

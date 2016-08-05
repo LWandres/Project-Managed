@@ -1,0 +1,176 @@
+/*Main Divs*/
+
+#background {
+    background: CADETBLUE;
+    height: 8000px;
+    color: white;
+}
+#container {
+    width: 900px;
+    margin: 0px auto;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+#main {
+    margin-top: 50px;
+    height: 700px;
+    background: white;
+    margin: 20px;
+    border: solid 1px silver;
+}
+#agenda {
+    margin-top: 30px;
+    width: 800px;
+    background: white;
+    margin: 20px;
+    border-radius: 10px;
+    border: solid 1px silver;
+    padding: 50px;
+    color: black;
+}
+h2 {
+    margin-left: 10px;
+    text-transform: uppercase;
+    padding: 20px;
+    text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
+}
+#tabs ul li {
+    float: none;
+}
+#agenda ul li {
+    float: none;
+    margin-left: 350px;
+    display: inline;
+}
+
+/*Inputs and forms*/
+
+input {
+    display: inline-block;
+    padding: 0px;
+    margin: 0px;
+}
+input[type=date] {
+    height: 25px;
+    width: 140px;
+}
+textarea {
+    vertical-align: top;
+    font-family: Tahoma;
+    font-size: .80em;
+    border: 0px;
+    width: 600px;
+    padding: 0px;
+    resize: none;
+}
+table {
+    padding: 10px;
+}
+.objectives {
+    border: solid 1px black;
+    margin-bottom: 40px;
+    padding: 10px;
+}
+.goals {
+    border: solid 1px black;
+    margin-bottom: 40px;
+    padding: 10px;
+}
+.attendees {
+    border: solid 1px black;
+    margin-bottom: 40px;
+    padding: 10px;
+}
+.attendees input[type=submit] {
+    margin-left: 450px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.Agenda {
+    margin-bottom: 40px;
+    border: solid 1px black;
+    padding: 10px;
+}
+
+/*Followups*/
+
+.FollowUps {
+    padding-top: 0px;
+    width: 750px;
+    margin-top: 10px;
+}
+.FollowUps table {
+    vertical-align: top;
+}
+.FollowUps input[name=updatefollowup] {
+    background: green;
+    color: white;
+    padding: 5px;
+}
+.FollowUps input[id='follow'] {
+    width: 300px;
+}
+.FollowUps th {
+    width: 190px;
+    text-align: center;
+}
+.FollowUps input[type="text"] {
+    width: 300px;
+}
+#agenda> div.FollowUps> form> div> table> thead> tr:nth-child(1)> th:nth-child(1) {
+    text-align: left;
+}
+#agenda> div.FollowUps> form> div> table> thead> tr:nth-child(1)> th:nth-child(4) {
+    text-align: left;
+}
+#agenda> div.FollowUps> form> div> table> thead> tr:nth-child(1)> th:nth-child(4) {
+    width: 200px;
+    margin-left: 50px;
+}
+#agenda> div.attendees> form {
+    border: 0px;
+}
+#container> div.email> form> input[type="button"] {
+    display: inline-block;
+    border-radius: 5px;
+}
+#agenda a[name="back"] {
+    margin-left: 500px;
+}
+input[name=email] {
+    margin-top: 20px;
+    margin-left: 600px;
+    padding: 5px;
+    color: black;
+    border: solid 1px black;
+    border-radius: 5px;
+}
+.add_field_button {
+    background: #337ab7 !important;
+    border: solid 1px #337ab7;
+    padding: 6px !important;
+    border-radius: 5px !important;
+    color: white !important;
+}
+#container> div.email> a {
+    margin-left: 500px;
+}
+#container> div.email> form:nth-child(1) {
+    margin-top: 20px;
+    width: 100px;
+    margin-left: 600px;
+    padding: 5px;
+    color: black;
+    border: solid 1px black;
+    border-radius: 5px;
+    display: inline-block;
+    background: white;
+}
+
+/*Rich text editor*/
+
+iframe {
+    height: 100%;
+}
+#mceu_143 {
+    height: 700px !important;
+}

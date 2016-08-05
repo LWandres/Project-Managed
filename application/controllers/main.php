@@ -13,6 +13,7 @@ class main extends CI_Controller {
 		$this->load->view('agenda');
 	}
 
+//updates follow ups
 	public function updatefollows($id){
 		$followups= $this->input->post();
 		$owner= $followups['owner'];
@@ -23,17 +24,19 @@ class main extends CI_Controller {
 		redirect('/display/loaddashboard');
 	}
 
+//completes follow ups
 	public function completefollow($id){
 		$this->meetings->completefollow($id);
 		redirect('/display/loaddashboard');
 	}
 
-
+//updates follow up status to incomplete
 	public function incompletefollow($id){
 		$this->meetings->incompletefollow($id);
 		redirect('/display/loaddashboard');
 	}
 
+//updates meeting attendance
 	public function attendance($id){
 		$attendance= $this->input->post();
 		for($i=0;$i<count($attendance['attendee'][$i]);$i++){
@@ -47,6 +50,7 @@ class main extends CI_Controller {
 				$this->load->view('agenda',$data);
 		}
 
+//completes creates a new meeting with recurring logic built in as well.
 	public function new_meeting(){
 		$meetinginfo=$this->input->post();
 		if($meetinginfo['Recur']== 'No'){
@@ -62,7 +66,7 @@ class main extends CI_Controller {
 		}
 		$ids= $this->meetings->get_meetid();
 		$id= $ids['MAX(id)'];
-		//prepare user information for import
+		//prepare user information for import to the phpmailer and to the agendas
 		$splituser = explode(",", $meetinginfo['participants']);
 		foreach($splituser as $user){
 				$splitemail= explode(" <",$user);
@@ -90,9 +94,10 @@ class main extends CI_Controller {
 			$this->load->view('agenda',$data);
 		}
 
+//gets meeting info for the recurring tab
 	public function recurring($id){
-		$recurid=$this->meetings->getrecurid($id);
-		$allrecurs=$this->meetings->allrecur($id,$recurid);
+		$recurid =$this->meetings->getrecurid($id);
+		$allrecurs=$this->meetings->allrecur($recurid);
 		$is_logged= $this->session->userdata['id'];
 		$first= $this->session->userdata('first');
 		$owned= $this->displays->showactiveowned($is_logged);
@@ -112,6 +117,7 @@ class main extends CI_Controller {
 		$this->load->view('recurring',$data);
 	}
 
+//updates full meeting notes
 	public function updatenotes($id){
 		$notes=$this->input->post();
 		$attendees=$notes['attendee'];
@@ -121,6 +127,3 @@ class main extends CI_Controller {
 	}
 
 }
-
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */

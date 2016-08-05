@@ -8,28 +8,30 @@ class access extends CI_Controller {
 		$this->load->model('meetings');
 	}
 
+// Basic routes
 	public function index(){
 		$this->load->view('welcome');
 	}
-
 	public function regpage(){
 		$this->load->view('login');
 	}
-
+	public function dashboard(){
+		$this->load->view('dashboard');
+	}
 	public function login(){
 		$is_logged = $this->users->login($this->input->post());
-    if($is_logged){
-			$newdata = array(
-								 'id'=> $is_logged['id'],
-								 'first'=> $is_logged['first'],
-								 'last'=> $is_logged['last'],
-								 'email'=> $is_logged['email']);
-			$sessioninfo= $this->session->set_userdata($newdata);
-      redirect('/display/loaddashboard');
-    } else {
-      $this->session->set_flashdata('log_errors', "<p class='errors'>Invalid login credentials</p>");
-      redirect('/access/regpage');
-    }
+	    if($is_logged){
+				$newdata = array(
+					 'id'=> $is_logged['id'],
+					 'first'=> $is_logged['first'],
+					 'last'=> $is_logged['last'],
+					 'email'=> $is_logged['email']);
+				$sessioninfo= $this->session->set_userdata($newdata);
+	      redirect('/display/loaddashboard');
+	    } else {
+	      $this->session->set_flashdata('log_errors', "<p class='errors'>Invalid login credentials</p>");
+	      redirect('/access/regpage');
+	    }
 	}
 	public function register(){
 		$is_valid = $this->users->register($this->input->post());
@@ -49,21 +51,6 @@ class access extends CI_Controller {
 			// show session error messages
 		}
 	}
-
-	public function profile(){
-		$this->load->view('profile');
-	}
-
-	public function updateprofile($id){
-
-		$this->users->updateprofile($id);
-		redirect('/display/loaddashboard');
-	}
-
-	public function dashboard(){
-		$this->load->view('dashboard');
-	}
-
 	public function logout(){
 		$this->session->unset_userdata('id');
 		$this->session->unset_userdata('first');
@@ -72,7 +59,26 @@ class access extends CI_Controller {
 		redirect('/');
 	}
 
-}
+	public function profile(){
+		$is_logged= $this->session->userdata['id'];
+		$first= $this->session->userdata('first');
+		$user = $this->users->get_user_by_id($is_logged);
+		$data= array(
+			'userinfo'=>$user,
+			);
+		$this->load->view('profile',$data);
+	}
 
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */
+//updates user profile information
+	public function updateprofile($id){
+		$newprofile = $this->input->post();
+		$this->users->updateprofile($id, $newprofile);
+		redirect('/display/loaddashboard');
+	}
+	// Keeping for future implementation
+	// public function portal($id){
+	// 	$data = array(
+	// 		'meetinginfo' => $id);
+	// 	$this->load->view('portal',$data);
+	// }
+}

@@ -1,0 +1,47 @@
+/*Main DIVS*/
+body {
+    margin: 0px;
+}
+#login-container {
+    background: mediumturquoise;
+}
+#main {
+    margin-top: 10%;
+    margin-bottom: 10%;
+    width: 100%;
+}
+#updateprofile {
+    margin: 0px auto;
+    width: 60%;
+    margin-top: 5%;
+    color: black;
+}
+
+
+/*Inputs and forms*/
+form {
+    margin-top: 50px;
+    width: 420px;
+    padding: 20px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.75);
+}
+
+#main> div> div.col-md-6> form {
+    margin-left: 5%!important;
+}
+#main> div> div.col-md-6> form> label {
+    padding-left: 0px;
+}
+#main> div> div.col-md-6> form> div.col-sm-10 {
+    padding-left: 0px;
+}
+#main> div> div.col-md-5.col-md-offset-1 {
+    margin-left: 0px;
+}
+    .col-sm-2 {
+        width: 100% !important;
+    }
+    .form-horizontal .control-label {
+        text-align: left !important;
+    }

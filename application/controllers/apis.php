@@ -1,5 +1,6 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+//Main controller for external integrations
 class apis extends CI_Controller {
 		public function __construct(){
 			parent::__construct();
@@ -8,8 +9,41 @@ class apis extends CI_Controller {
 			$this->load->model('meetings');
 		}
 
+	//email follow up button from the dashboard.
+	public function emailfollowup($meetid){
+		$followups = $this->meetings->get_emailfollowups($meetid);
+		foreach ($followups as $task){
+			$email_to = $task['email'];
+			$followup = $task['followup'];
+			$meeting = $task['name'];
+			$duedate = date('F m Y', strtotime($task['duedate']));
+			$to = $email_to;
+			$subject = 'Action Required: Follow Up Due on'. $duedate .'<br>';
+			$from = 'projectmanaged@gmail.com';
+			// To send HTML mail, the Content-type header must be set
+			$headers  = 'MIME-Version: 1.0' . "\r\n";
+			$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+			// Create email headers
+			$headers .= 'From: '.$from."\r\n".
+			    'Reply-To: '.$from."\r\n" .
+			    'X-Mailer: PHP/' . phpversion();
+			// Compose a simple HTML email message
+			$message = '<html><body>';
+			$message .= '<div style="background:black;width:500px;margin:0px auto;margin-top:10px;margin-bottom:40px;padding:40px;font-style:tahoma"><h1 style="color:white;text-align:center;margin-top:10px>Hi from Project Managed!</h1>';
+			$message .= '<p style="text-align:center;color:white;font-size:15px">This is a friendly reminder that you have followups from the meeting'.$meeting.'<br>';
+			$message .= 'Your follow up is:'.$task['followup'].'<br>';
+			$message .= 'You can access meeting notes by using the button below.</p>';
+			$message .= '<a style="text-decoration:none;margin-left:36%;background:rgb(25, 176, 153);padding:20px;width:200px;border:none;color:white;font-style:bold;font-size:20px" href="localhost:8888/admin/viewnotes/'.$meetid.'">Access Meeting Agenda</a></div></body></html>';
+			// Sending email
+			mail($to, $subject, $message, $headers);
+		}
+		redirect('/display/loaddashboard');
+	}
+
+
+	//send email button directly on meeting agenda pages
 	public function sendemail($meetid){
-		$agenda= $this->meetings->get_agenda($meetid);
+		$agenda = $this->meetings->get_agenda($meetid);
 		$attendees= $this->meetings->get_participants($meetid);
 		$recipients=$this->users->sendemails($meetid);
 		 foreach ($recipients as $recipient){
@@ -20,7 +54,7 @@ class apis extends CI_Controller {
 		 	$email_to = implode(',', $email); // your email address
 			$to = $email_to;
 			$subject = 'Agenda Notes';
-			$from = 'projectmanaged@gmrail.com';
+			$from = 'projectmanaged@gmail.com';
 			// To send HTML mail, the Content-type header must be set
 			$headers  = 'MIME-Version: 1.0' . "\r\n";
 			$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
@@ -30,23 +64,26 @@ class apis extends CI_Controller {
 			    'X-Mailer: PHP/' . phpversion();
 			// Compose a simple HTML email message
 			$message = '<html><body>';
-			$message .= '<h1 style="color:#0033cc;">Hi from Project Managed!</h1>';
-			$message .= '<p style="color:black;font-size:18px;">In preparation for your upcoming meeting, you can access our email notes at the following URL:</p>';
-			$message .= '<a href="www.projectmanaged.com">Access Meeting Agenda</a></body></html>';
+			$message .= '<div style="background:black;width:500px;margin:0px auto;margin-top:10px;margin-bottom:40px;padding:40px;font-style:tahoma"><h1 style="color:white;text-align:center;margin-top:10px>Hi from Project Managed!</h1>';
+			$message .= '<p style="text-align:center;color:white;font-size:15px">In preparation for your upcoming meeting, you can access the meeting notes by using the button below.</p>';
+			$message .= '<a style="text-decoration:none;margin-left:36%;background:rgb(25, 176, 153);padding:20px;width:200px;border:none;color:white;font-style:bold;font-size:20px" href="localhost:8888/admin/viewnotes/'.$meetid.'">Access Meeting Agenda</a></div></body></html>';
 			// Sending email
 			mail($to, $subject, $message, $headers);
-					redirect('/display/loaddashboard');
+			?><script>alert("Your emails have sent successfully!");</script><?php
+			redirect('/display/loaddashboard');
 	}
 
-		public function createpdf($meetid){
-		  // Set parameters
-		  // Set parameters
+	//generates a meeting agenda PDF for download
+	public function createpdf($meetid){
+		$agenda= $this->meetings->get_agenda($meetid);
+		$attendees= $this->meetings->get_participants($meetid);
+		$followups = $this->meetings->get_followups($meetid);
 		  // Set parameters
 		$apikey = '79e27278-d41d-4ff4-8481-a6e802ea1730';
 		$value = '<title>Meeting Notes</title>
 		        <style>
 		        #background{
-		          background:CADETBLUE;
+		          background:MEDIUMTURQUOISE;
 		          height:1500px;
 		          color:white;
 		        }
@@ -57,52 +94,6 @@ class apis extends CI_Controller {
 		          font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 		        }
 
-		        #header{
-		          margin-top:40px;
-		          margin-left: 20px;
-		          width:800px;
-		          background:CADETBLUE;
-		          height: 2%;
-		          display:inline-block;
-		          background:white;
-		          padding-bottom:10px;
-		          border-bottom:solid 1px black;
-		          border-radius:10px;
-		          color:black;
-		        }
-
-		        #header > h1{
-		          margin-left:60px;
-		          display: inline-block;
-		        text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
-		                     0px 8px 13px rgba(0,0,0,0.1),
-		                     0px 18px 23px rgba(0,0,0,0.1);
-		          border-bottom: solid 2 px navy;
-		        }
-
-		        #header ul,li{
-		          margin-top:15px;
-		          display: inline-block;
-		          padding:0% 2%;
-		          float:right;
-		        }
-		        #header ul{
-		          width: 40%;
-		        }
-
-		        #header a{
-		          text-decoration: none;
-		          color:#009999;
-		        }
-
-		        #header a:hover {
-		          color: hotpink;
-		        }
-
-		        #header li{
-		          border-right:solid 1px;
-		        }
-
 		        #main{
 		          margin-top: 50px;
 		          height: 700px;
@@ -111,10 +102,12 @@ class apis extends CI_Controller {
 		          border:solid 1px silver;
 		        }
 
-		        h2{
-		          padding: 20px;
-		          text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
-		        }
+				#meetingname {
+					padding: 0px;
+					margin: 0px;
+					font-size: 2.4em;
+					text-shadow: none;
+				}
 
 		        #agenda{
 		          margin-top: 30px;
@@ -128,21 +121,11 @@ class apis extends CI_Controller {
 		        }
 
 		        h2{
-		          margin-left: 20px;
-		        }
-
-		        #tabs ul li{
-		          float:none;
+		          margin-left: 5px;
 		        }
 
 		        input{
 		          display:inline-block;
-		        }
-
-		        textarea{
-		          vertical-align: top;
-		          font-family: Tahoma;
-		          font-size:.80em;
 		        }
 
 		        table{
@@ -152,20 +135,10 @@ class apis extends CI_Controller {
 		        .table{
 		            display:table;
 		        }
-
-		        input{
-		          padding:0px;
-		          margin:0px;
-		        }
-
 		        #agenda ul li{
 		          float:none;
 		          margin-left: 350px;
 		          display:inline;
-		        }
-		        input[type=date]{
-		          height:25px;
-		          width:140px;
 		        }
 
 		        .objectives{
@@ -177,168 +150,39 @@ class apis extends CI_Controller {
 		          margin-bottom:40px;
 		          padding: 10px;
 		        }
-
-		        .attendees{
-		          margin-bottom:40px;
-		          padding: 10px;
-		        }
-
-		        .attendees input[type=submit]{
-		          margin-left:450px;
-		          margin-top:5px;
-		          margin-bottom:5px;
-		        }
-
 		        .Agenda{
 		          margin-bottom:40px;
 		          padding: 10px;
 		        }
-
-		        .FollowUps{
-		          margin-top:0px;
-		          padding-top:0px;
-		        }
-
-		        .FollowUps table{
-		            vertical-align: top;
-		          }
-
-		        .FollowUps input[name=updatefollowup]{
-		          background:green;
-		          color:white;
-		          padding: 5px;
-		        }
-		        .FollowUps input[id=follow]{
-		          width:300px;
-		        }
-
-		        .FollowUps{
-		            width:750px;
-		            margin-top:10px;
-		          }
-		        .FollowUps th{
-		          width:190px;
-		          text-align:center;
-		        }
-		        .FollowUps input[type=text]{
-		          width:300px;
-		        }
-		        #agenda > div.FollowUps > form > div > table > thead > tr:nth-child(1) > th:nth-child(1){
-		          text-align:left;
-		        }
-		        #agenda > div.FollowUps > form > div > table > thead > tr:nth-child(1) > th:nth-child(4){
-		          text-align:left;
-		        }
-
-		        #agenda > div.FollowUps > form > div > table > thead > tr:nth-child(1) > th:nth-child(4){
-		          width:200px;
-		          margin-left:50px;
-		        }
-
-		        #agenda > div.attendees > form{
-		          border:0px;
-		        }
-
-
-		        #container > div.email > form > input[type=button]{
-		          display:inline-block;
-		          border-radius: 5px;
-		        }
-
-		        #agenda a[name=back]{
-		          margin-left: 500px;
-		        }
-
-		        input[name=email]{
-		          margin-top: 20px;
-		          margin-left:600px;
-		          padding:5px;
-		          color:black;
-		          border:solid 1px black;
-		          border-radius: 5px;
-		        }
-
-		        .add_field_button{
-		          margin-top: 20px;
-		          padding:5px;
-		          background:green;
-		          color:white;
-		          border-radius: 5px;
-		          margin-bottom:20px;
-		        }
-
-		        #agenda a[name=back]{
-		          margin-left: 500px;
-		        }
-
 		        </style>
 		        </head>
 		        <body>
 		        <div id=background>
 		          <div id="container">
 		              <div id="agenda">
-		              <h2>Agenda Name Here</h2>
-		                <ul>
-		                  <li>Date</li>
-		                  <li>Time</li>
-		                </ul>
+					  <h2 id="meetingname">'.$agenda['name'].'</h2>
+	  			        <ul id="date">
+	  			          <li>'. date('l F m Y',strtotime($agenda['date'])).'</li>
+	  			          <li>'. date('h:m A',strtotime($agenda['start'])).'</li> -'. date('h:m A',strtotime($agenda['end'])).'</li>
+	  			        </ul>
 		                <h4>Objectives</h4>
 		                <div class="objectives">
-		                  Objectives go here
+		                  '.$agenda['objective'].'
 		                </div>
 
 		                <h4>Goals</h4>
 		                <div class="goals">
-		                    Goals go here
-		                </div>
-
-		                <h4>Attendees</h4>
-		                <div class="attendees">
-
-		                  <form class="attendees">
-		                        <input type="checkbox" name="attendee[]" value="Attendees"</input><br>
-		                  </form>
+		                    '.$agenda['goals'].'
 		                </div>
 
 		                <h4>Agenda</h4>
 		                <div class="Agenda">
-		                  Agenda Goes here
-		                </div>
-
-		                <h4>Meeting Follow Ups</h4>
-
-		                <div class="FollowUps">
-		                      <form class="followtable">
-		                              <table>
-		                                <thead>
-		                                  <tr>
-		                                    <th>Owner</th>
-		                                    <th>Follow Up</th>
-		                                    <th>Due</th>
-		                                    <th>Done?</th>
-		                                  </tr>
-		                                </thead>
-		                                <tbody>
-		                                  <?php if(!empty($followups1)){ echo "This meeting doesn"t have any follow ups";
-		                                  } ?>
-		                                  <?php if(!empty($followups)){
-		                                          foreach($followups as $follow){ ?>
-		                                               <tr>
-		                                                  <td><?=$follow["owner"]?></td>
-		                                                  <td><?=$follow["followup"]?></td>
-		                                                  <td><?=$follow["duedate"]?></td>
-		                                                  <td><?=$follow["status"]?></td>
-		                                                </tr>
-		                                              <?php }
-		                                        }?>
-		                                </div>
-		                              </div>
-		                         </table>
-		                      </form>
+		                  '.$agenda['agenda'].'
 		                </div>
 
 		            </div>
 		          </div>
+				  </div>
 		        </body>'; // can aso be a url, starting with http..
 
 		// Convert the HTML string to a PDF using those parameters.  Note if you have a very long HTML string use POST rather than get.  See example #5
@@ -352,11 +196,10 @@ class apis extends CI_Controller {
 		header('Pragma: public');
 		header('Content-Length: ' . strlen($result));
 
-		// Make the file a downloadable attachment - comment this out to show it directly inside the
-		// web browser.  Note that you can give the file any name you want, e.g. alias-name.pdf below:
-		header('Content-Disposition: attachment; filename=' . 'Agenda.pdf' );
+		// Make the file a downloadable attachment
+		header('Content-Disposition: attachment; filename=' . 'MeetingAgenda.pdf' );
 		echo $result;
 		redirect('/display/loaddashboard');
 		}
-		}
+	}
 ?>

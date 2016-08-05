@@ -8,6 +8,7 @@ class display extends CI_Controller {
 		$this->load->model('meetings');
 	}
 
+//Main function to populate all dashboard data
 	public function loaddashboard(){
 		$is_logged= $this->session->userdata['id'];
 		$first= $this->session->userdata('first');
@@ -16,6 +17,7 @@ class display extends CI_Controller {
 		$archived= $this->displays->showarchived($is_logged);
 		$userfollowups= $this->displays->showfollowups($is_logged);
 		$completefollows= $this->displays->showcompleted($is_logged);
+		$recurring = $this->meetings->showrecurring($is_logged);
 		$data=array(
 			'activeowned'=> $owned,
 			'activeattend'=>$attend,
@@ -23,11 +25,8 @@ class display extends CI_Controller {
 			'userfollowups'=>$userfollowups,
 			'completefollows'=>	$completefollows,
 			'userinfo'=>$first,
+			'recurring'=>$recurring,
 			'userid'=>$is_logged);
 			$this->load->view('dashboard', $data);
 	}
-
 }
-
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */

@@ -1,0 +1,457 @@
+/*//header*/
+#header {
+    width: 100%;
+    display: inline-block;
+    font-family: 'Varela Round', sans-serif;
+    vertical-align: center;
+}
+#header ul, li {
+    display: inline-block;
+    padding: 0%;
+    float: right;
+}
+#header li {
+    font-size: 1.2em;
+    padding-right: 5%;
+}
+#header ul {
+    margin-top: 2%;
+    width: 50%;
+    float: right;
+}
+#header a {
+    text-decoration: none;
+    color: #009999;
+}
+#header a:hover {
+    color: black;
+    font-size: 1.05em;
+}
+#mobile-nav {
+    display: none;
+}
+.managed {
+    color: teal;
+}
+.managed:hover {
+    color: black;
+    font-weight: bolder;
+}
+.fa.fa-home {
+    font-size: 1.4em;
+}
+.fa.fa-home:hover {
+    font-size: 1.4em;
+}
+.fixed {
+    position: fixed !important;
+    top: 0;
+    width: 90%;
+    z-index: 1;
+    background: white;
+    border-bottom: solid 5px white;
+}
+h1 {
+    width: 40%;
+    font-size: 2em !important;
+    display: inline-block;
+    margin-left: 5%;
+    margin-top: 2% !important;
+}
+
+/*end header*/
+
+
+/*Main DIVs*/
+
+body {
+    margin: 0px auto;
+    background: white;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    margin-bottom: 5%;
+}
+#container {
+    font-family: 'Varela Round', sans-serif;
+    margin-left: 5%;
+    margin-right: 5% !important;
+}
+#top {
+    display: inline-block;
+    width: 100%;
+    vertical-align: top;
+    color: white;
+    padding-bottom: 5%;
+}
+#top p {
+    width: 90%;
+    margin: 0px auto;
+    margin-top: 5%;
+    font-size: 1em;
+}
+#middle {
+    height: 350px;
+    overflow: clear;
+}
+#middle ul li {
+    padding-top: 5%;
+    width: 10%;
+    display: inline-block;
+    float: none;
+    margin: 1.5%;
+    margin-left: 7%;
+    margin-bottom: 0px;
+}
+#middle ul {
+    margin-top: 0px;
+    padding: 0px;
+}
+.image {
+    position: relative;
+    width: 95%;
+    padding-top: 6%;
+}
+.image h2 {
+    position: absolute;
+    top: 210px;
+    left: 60px;
+    color: black;
+    font-size: 3.5em;
+    background: rgba(255, 255, 255, 0.75);
+    width: 450px;
+    padding-left: 31px;
+}
+.image h5 {
+    position: absolute;
+    top: 273px;
+    left: 230px;
+    width: 280px;
+    color: black;
+    font-size: 2.5em;
+    background: rgba(255, 255, 255, 0.75);
+    padding-left: 30px;
+    padding-bottom: 5px;
+}
+.box-left {
+    height: 468px !important;
+    height: 100%;
+    display: inline-block;
+    vertical-align: top;
+    background: MEDIUMTURQUOISE;
+    padding-top: 3%;
+    padding-bottom: 7%;
+    text-align: center;
+}
+.box-right {
+    width: 58.3%;
+    display: inline-block;
+    vertical-align: top;
+    display: inline-block;
+}
+h3 {
+    font-size: 2.5em;
+    color: white;
+    margin-bottom: 0px;
+    margin-top: 15px;
+}
+.fa.fa-plane {
+    font-size: 5em;
+}
+.highlight {
+    color: yellow;
+}
+
+/*jQuery boxes*/
+
+
+/*Grid Animations */
+
+.grid {
+    position: relative;
+    margin: 0 auto;
+    max-width: 1000px;
+    list-style: none;
+    text-align: center;
+}
+.grid figure {
+    position: relative;
+    float: left;
+    overflow: hidden;
+    margin: 0px;
+    max-height: 360px;
+    width: 50%;
+    background: #3085a3;
+    text-align: center;
+    cursor: pointer;
+    height: 234.2px;
+}
+.grid figure img {
+    position: relative;
+    display: block;
+    max-width: 100%;
+    opacity: 0.8;
+}
+.grid figure figcaption {
+    padding: 2em;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 1.25em;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+.grid figure figcaption::before, .grid figure figcaption::after {
+    pointer-events: none;
+}
+.grid figure figcaption, .grid figure figcaption> a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+.grid figure figcaption> a {
+    z-index: 1000;
+    text-indent: 200%;
+    white-space: nowrap;
+    font-size: 0;
+    opacity: 0;
+}
+.grid figure h2 {
+    word-spacing: -0.15em;
+    font-weight: 300;
+}
+.grid figure h2 span {
+    font-weight: 800;
+}
+.grid figure h2, .grid figure p {
+    margin: 0;
+}
+.grid figure p {
+    letter-spacing: 1px;
+    font-size: 68.5%;
+}
+figure.effect-chico img {
+    -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+    transition: opacity 0.35s, transform 0.35s;
+    -webkit-transform: scale(1.12);
+    transform: scale(1.12);
+    width: 100%;
+    height: 100%;
+}
+figure.effect-chico:hover img {
+    opacity: 0.5;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+figure.effect-chico figcaption {
+    padding: 2.3em;
+    padding-bottom: 3em;
+}
+figure.effect-chico figcaption::before {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    bottom: 30px;
+    left: 30px;
+    border: 1px solid #fff;
+    content: '';
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+figure.effect-chico figcaption::before, figure.effect-chico p {
+    opacity: 0;
+    -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+    transition: opacity 0.35s, transform 0.35s;
+}
+figure.effect-chico h2 {
+    padding: 20% 0 10px 0;
+}
+figure.effect-chico p {
+    margin: 0 auto;
+    max-width: 200px;
+    -webkit-transform: scale(1.5);
+    transform: scale(1.5);
+}
+#top> div.box-right> div> figure> figcaption> p {
+    font-size: .60em;
+}
+figure.effect-chico:hover figcaption::before, figure.effect-chico:hover p {
+    font-size: .5em;
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
+/* end grid image animation*/
+
+
+/*RESPONSIVE */
+
+@media screen and (max-width: 50em) {
+    .content {
+        padding: 0 10px;
+        text-align: center;
+    }
+    .grid figure {
+        display: inline-block;
+        margin: 10px auto;
+        width: 100%;
+    }
+}
+
+/*Responsive Design*/
+
+@media (max-width: 995px) {
+    .fixed {
+        width: 90%;
+    }
+    #header> div.image> h2 {
+        font-size: 2em;
+        width: 320px;
+        top: 150px;
+    }
+    #header> div.image> h5 {
+        font-size: 1.5em;
+        width: 220px;
+        top: 190px;
+        left: 160px;
+    }
+    .box-right {
+        width: 100%;
+    }
+    #top> div.box-right> figure {
+        margin: 0px auto !important;
+    }
+}
+@media (max-width: 825px) {
+    h1 {
+        font-size: 1.5em !important;
+    }
+    #header ul, li {
+        font-size: 1em !important;
+    }
+}
+@media (max-width: 800px) {
+    #top> div.box-right> div> figure {
+        margin: 0px auto;
+        width: 50%;
+        font-size: 1em;
+    }
+    .image h2, h5 {
+        display: none;
+    }
+}
+@media (max-width: 685px) {
+    #mobile-nav {
+        display: inline-block;
+        float: right;
+        height: 100%;
+        vertical-align: middle;
+        z-index: 999;
+    }
+    #mobile-nav> div.responsive-menu> ul {
+        width: 100px;
+        z-index: 1015 !important;
+        float: left;
+    }
+    #mobile-nav li {
+        display: block;
+        float: left;
+        list-style: none;
+        font-size: 1.5em !important;
+        padding-right: 1%;
+    }
+    #mobile-nav ul {
+        width: 90px;
+        padding-left: 0px;
+        float: none;
+        margin-left: 2px;
+    }
+    #mobile-nav> div.responsive-menu> ul> li> a {
+        text-decoration: none;
+        display: block;
+        padding: 2%;
+        width: 150px;
+    }
+    #mobile-nav a {
+        text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.5);
+        color: white;
+        transition: color linear 0.15s;
+        font-size: .90em;
+    }
+    #mobile-nav a:hover, #mobile-nav.current-item a {
+        text-decoration: none;
+        background: white;
+        color: MEDIUMTURQUOISE;
+    }
+    .rightheader li {
+        display: none;
+    }
+    #menu-btn div {
+        position: absolute;
+        font-size: 18px;
+        font-weight: 200;
+        z-index: 99;
+        margin-top: 2%;
+        left: 85%;
+    }
+    #menu-btn span {
+        display: block;
+        width: 19px;
+        height: 3px;
+        margin: 4px 0;
+        background: rgb(0, 0, 0);
+        z-index: 99;
+    }
+    .responsive-menu {
+        position: fixed;
+        right: 5%;
+        display: inline-block;
+        background: MEDIUMTURQUOISE;
+        border-radius: 5px;
+        width: 150px;
+        padding-bottom: 1%;
+        text-align: center;
+        z-index: 1015 !important;
+        margin-top: 5%;
+        border: solid 3px white;
+    }
+    .responsive-menu li {
+        display: inline-block;
+    }
+    .submenu {
+        z-index: 1;
+    }
+    #header> div.fixed> ul {
+        width: 30%;
+    }
+    .left-header {
+        width: 70%;
+    }
+    #top p {
+        font-size: .8em !important;
+    }
+    #top h3 {
+        font-size: 1em;
+    }
+    #top> div.box-right> div> figure> figcaption> p {
+        font-size: .5em !important;
+    }
+    .box-left {
+        height: 100% !important;
+    }
+    .grid figure {
+        height: 200px;
+    }
+}
+@media (max-width: 560px) {
+    #header> div.image> h2 {
+        font-size: 1.5em;
+        width: 200px;
+        top: 90px;
+    }
+    #header> div.image> h5 {
+        font-size: 1em;
+        width: 150px;
+        top: 123px;
+        left: 110px;
+    }
+}

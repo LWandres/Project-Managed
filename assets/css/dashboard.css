@@ -1,0 +1,159 @@
+/*Main DIVS*/
+
+#background {
+    background: mediumturquoise;
+    color: white;
+    padding-top: 5%;
+    height: 900%;
+    padding-bottom: 5%;
+}
+#dashboard-container {
+    width: 1000px;
+    margin: 0px auto;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+#container {
+    padding-left: 5% !important;
+    margin-left: 0px !important;
+    width: 100%;
+}
+#header {
+    margin-top: 40px;
+    color: black;
+}
+.fixed {
+    width: 100% !important;
+    left: 0;
+    padding-left: 5%;
+}
+#main {
+    margin-top: 50px;
+    height: 700px;
+    background: white;
+    margin: 20px;
+    border: solid 1px silver;
+}
+#new_meeting_form> form> textarea {
+    height: 300px;
+}
+#new_meeting_form {
+    width: 90%;
+    margin: 30px;
+}
+#new_meeting_form input {
+    width: 60%;
+}
+
+/*Tabs*/
+
+#tabs ul li {
+    float: none;
+}
+#tabs-1> a {
+    margin-left: 600px;
+}
+#searchbox {
+    float: right;
+}
+.searchinput {
+    float: right;
+}
+#header> h1 {
+    margin-left: 30px;
+}
+#tabs-1> table {
+    margin-bottom: 80px;
+}
+#tabs-4> table {
+    margin-bottom: 80px;
+}
+#tabs {
+    padding: 0px;
+    border: none;
+    height: 30%;
+}
+#tabs> ul {
+    border: none;
+    padding: 0px;
+}
+li.ui-tabs-active {
+    background: teal !important;
+    border: none;
+}
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited {
+    color: white !important;
+}
+.ui-widget-header {
+    background: mediumturquoise !important;
+}
+
+/*Input Elements*/
+
+input {
+    display: inline-block;
+}
+textarea {
+    resize: none;
+    vertical-align: top;
+    width: 100%;
+    padding: 5px;
+    font-size: .80em;
+}
+table {
+    padding: 10px;
+    margin-top: 50px;
+}
+label {
+    padding: 10px;
+    text-align: right;
+}
+input[name=newmeeting] {
+    background: teal;
+    color: white;
+    margin-top: 10px;
+    padding: 20px;
+    float: right;
+    border: none;
+    border-radius: 5px;
+}
+input[name=newmeeting]:hover {
+    background: black;
+    color: white;
+    margin-top: 10px;
+    padding: 20px;
+    float: right;
+    border: none;
+    border-radius: 5px;
+}
+html input[type=button], input[type=submit] {
+    background: #337ab7 !important;
+    border: solid 1px #337ab7;
+    padding: 6px !important;
+    border-radius: 5px !important;
+    color: white !important;
+}
+h3 {
+    font-family: verdana;
+    font-size: 14px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 100;
+    line-height: 15.4px;
+}
+
+/*Rich Text editor*/
+
+div.mce-edit-area {
+    height: 400px;
+}
+#mceu_192 {
+    height: 600px;
+}
+.objectives, .goals, .attendees, .agenda {
+    margin-bottom: 2%;
+    padding: 2%;
+    font-size: 1.2em;
+}
+iframe {
+    height: 100% !important;
+}
