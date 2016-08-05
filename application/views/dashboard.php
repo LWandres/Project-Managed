@@ -2,6 +2,8 @@
 <head>
   <title>Dashboard</title>
 
+  <?php echo 'current' . phpversion(); ?>
+
     <!-- Stylesheets -->
     <link rel="stylesheet" type="text/css" href="/assets/css/dashboard.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
@@ -9,9 +11,9 @@
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 
     <!-- JS -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 	<script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 
     <script>
@@ -213,9 +215,9 @@
                           <td><?=$archive['recur']?></td>
                           <td><a href="/admin/active/<?=$archive['meetings_id']?>">Move</td>
                         </tr>
-                    <?php  }
-                  }?>
-                <?php if($archived ==null){?>
+                    <?php  } ?>
+                <?php  } ?>
+                <?php if($archived == null){?>
                           </tbody>
                           </table>
                           <?php echo "You do not have any meetings archived.";
