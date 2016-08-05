@@ -61,7 +61,7 @@
                             <tr>
                                 <td><a href="/admin/meetinginfo/<?=$recurring['id']?>"><?=$recurring['name']?></a></td>
                                 <td><?=$recurring['projectname']?></td>
-                                <td><?=$recurring['date']?></td>
+                                <td><?=date('m/d/Y',strtotime($recurring['date']))?></td>
                                 <td><a href="/admin/viewnotes/<?=$recurring['id']?>">View Notes</a></td>
                                 <td><?=$recurring['id']?></td>
                                 <td><a href="/admin/archive/<?=$recurring['id']?>">Archive</a></td>
