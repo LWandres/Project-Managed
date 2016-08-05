@@ -170,11 +170,9 @@
                         <option value="New">New</option><br>
                     <?php foreach($recurring as $recur) { ?>
                         <option value="<?=$recur['name']?>"><?=$recur['name']?></option><br>
-                    <? } ?>
+                    <?php } ?>
                     </select>
                 </div>
-
-                <div class="textinputs">
                     <label>Project Name:</label>
                     <input type="text" id="project" name="project"></input><br>
                     <label>Meeting Name:</label>
@@ -187,7 +185,6 @@
                     <label>Participants:</label><br> <textarea name="participants"></textarea><br>
                     <label>Agenda:</label><br><textarea class="agenda richtext" name="agenda"></textarea><br>
                     <input type="submit" name="newmeeting" value="Let's do this"></input>
-                </div>
               </form>
              </div>
          </div>
