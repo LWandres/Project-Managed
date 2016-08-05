@@ -74,7 +74,7 @@
                     <li><?=date('l F m Y',strtotime($agenda['date']))?></li>
                     <li>(<?=date('h:m A',strtotime($agenda['start']))?></li> -<?= date('h:m A',strtotime($agenda['end']))?>)</li>
                 </ul>
-                <form action="/Main/updatenotes/<?=$agenda['id']?>" method="post">
+                <form action="/main/updatenotes/<?=$agenda['id']?>" method="post">
                     <h4>Objectives</h4>
                     <div class="objectives">
                         <textarea name="objectives"><?=$agenda['objective']?></textarea>
@@ -105,7 +105,7 @@
 
                 <h4>Meeting Follow Ups</h4>
                 <div class="FollowUps">
-                    <form class="followtable" method="post" action="/Main/updatefollows/<?=$agenda['id']?>">
+                    <form class="followtable" method="post" action="/main/updatefollows/<?=$agenda['id']?>">
                         <div class="input_fields_wrap">
                             <button class="add_field_button">Add New Followup</button>
                             <input type="hidden" name="meetingid" value="<?=$agenda['id']?>"></input>
