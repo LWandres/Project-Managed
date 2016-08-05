@@ -174,16 +174,18 @@
                     </select><br>
                 </div>
 
-                <label>Project Name:</label><input type="text" name="project"></input><br>
-                <label>Meeting Name:</label><input type="text" name="meeting"></input><br>
-                <label>Meeting Date:</label><input type="date" name="meetingdate"></input><br>
-                <label>Starting:</label><input type="time" name="start" step=900></input><br>
-                <label>Ending:</label><input type="time" name="end" step=900></input><br>
-                <label>Objectives:</label><textarea class="objectives richtext" name="objectives"></textarea><br>
-                <label>Goals:</label><br><textarea class="goals richtext" name="goals" ></textarea><br>
-                <label>Participants:</label><br> <textarea name="participants"></textarea><br>
-                <label>Agenda:</label><br><textarea class="agenda richtext" name="agenda"></textarea><br>
-                <input type="submit" name="newmeeting" value="Let's do this"></input>
+                <div class="textinputs">
+                    <label>Project Name:</label><input type="text" name="project"></input><br>
+                    <label>Meeting Name:</label><input type="text" name="meeting"></input><br>
+                    <label>Meeting Date:</label><input type="date" name="meetingdate"></input><br>
+                    <label>Starting:</label><input type="time" name="start" step=900></input><br>
+                    <label>Ending:</label><input type="time" name="end" step=900></input><br>
+                    <label>Objectives:</label><textarea class="objectives richtext" name="objectives"></textarea><br>
+                    <label>Goals:</label><br><textarea class="goals richtext" name="goals" ></textarea><br>
+                    <label>Participants:</label><br> <textarea name="participants"></textarea><br>
+                    <label>Agenda:</label><br><textarea class="agenda richtext" name="agenda"></textarea><br>
+                    <input type="submit" name="newmeeting" value="Let's do this"></input>
+                </div>
               </form>
              </div>
          </div>
