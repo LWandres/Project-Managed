@@ -13,9 +13,6 @@
 		<link href='http://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
 	  	<script src="https://use.fontawesome.com/08a48debfa.js"></script>
 
-		<!-- JS -->
-		<script src="/assets/js/jquery-2.2.4.min.js"></script>
-
 		<script>
 			$(document).ready(function(){
 				$(".responsive-menu").hide();
