@@ -156,14 +156,14 @@
             <h3>New Meeting Workspace</h3>
             <div id="new_meeting_form">
               <form action="/main/new_meeting" method="post">
-                <input type="hidden" name="owner" value="<?=$userid?>">
+                <input type="hidden" name="owner" value="<?=$userid?>"></input>
                 <label>Recurring?:</label>
                 <select name="Recur" id="Recur">
                   <option value="No">No</option><br>
                   <option value="Yes">Yes</option><br>
                 </select><br>
 
-                <div class="Recurbox" style="display:none;">
+                <div class="Recurbox">
                   <label>Your Recurrings:</label>
                     <select id="Recur2" name="Recur2">
                         <option value="">n/a</option><br>
@@ -171,14 +171,16 @@
                     <?php foreach($recurring as $recur) { ?>
                         <option value="<?=$recur['name']?>"><?=$recur['name']?></option><br>
                     <? } ?>
-                    </select><br>
+                    </select>
                 </div>
 
                 <div class="textinputs">
-                    <label>Project Name:</label><input type="text" name="project"></input><br>
-                    <label>Meeting Name:</label><input type="text" name="meeting"></input><br>
-                    <label>Meeting Date:</label><input type="date" name="meetingdate"></input><br>
-                    <label>Starting:</label><input type="time" name="start" step=900></input><br>
+                    <label>Project Name:</label>
+                    <input type="text" id="project" name="project"></input><br>
+                    <label>Meeting Name:</label>
+                    <input type="text" id="meeting" name="meeting"></input><br>
+                    <label>Meeting Date:</label><input type="date" id="meetingdate" name="meetingdate"></input><br>
+                    <label>Starting:</label><input type="time"  name="start" step=900></input><br>
                     <label>Ending:</label><input type="time" name="end" step=900></input><br>
                     <label>Objectives:</label><textarea class="objectives richtext" name="objectives"></textarea><br>
                     <label>Goals:</label><br><textarea class="goals richtext" name="goals" ></textarea><br>
