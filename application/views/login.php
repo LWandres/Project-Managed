@@ -1,5 +1,7 @@
-<!DOCTYPE PHP/HTML>
 <html>
+
+<?php echo 'current' . phpversion(); ?>
+
   <head>
     <title>Login/Registration</title>
     <link rel="stylesheet" type="text/css" href="/assets/css/login.css">

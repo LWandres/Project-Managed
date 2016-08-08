@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
 
     <!-- JS -->
-    <script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
+    <script type="text/javascript" src="/assets/js/jquery-3.1.0.min.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
@@ -61,7 +61,7 @@
                             <tr>
                                 <td><a href="/admin/meetinginfo/<?=$recurring['id']?>"><?=$recurring['name']?></a></td>
                                 <td><?=$recurring['projectname']?></td>
-                                <td><?=$recurring['date']?></td>
+                                <td><?=date('m/d/Y',strtotime($recurring['date']))?></td>
                                 <td><a href="/admin/viewnotes/<?=$recurring['id']?>">View Notes</a></td>
                                 <td><?=$recurring['id']?></td>
                                 <td><a href="/admin/archive/<?=$recurring['id']?>">Archive</a></td>

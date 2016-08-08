@@ -9,23 +9,22 @@
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 
     <!-- JS -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery-3.1.0.min.js"></script>
 	<script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
-    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="https://cdn.tinymce.com/4/tinymce.min.js"></script>
 
     <script>
               $(document).ready(function(){
                 $("#tabs").tabs();
-                $("#Recur2").show()
+                $(".Recurbox").show()
 
                 $('#Recur').on('change',function(){
                     if( $(this).val() === "Yes"){
-                        $("#Recur2").show()
-                        $(this).addClass("ui-state-active");
+                        $(".Recurbox").show()
                     }
                     else{
-                      $("#Recur2").hide()
+                      $(".Recurbox").hide()
                     }
                 });
 
@@ -178,22 +177,22 @@
             <h3>New Meeting Workspace</h3>
             <div id="new_meeting_form">
               <form action="/main/new_meeting" method="post">
-                <input type="hidden" name="owner" value="<?=$userid?>">
+                <input type="hidden" name="owner" value="<?=$userid?>"></input>
                 <label>Recurring?:</label>
                 <select name="Recur" id="Recur">
                   <option value="No">No</option><br>
                   <option value="Yes">Yes</option><br>
                 </select><br>
 
-                <div id="Recur2" style="display:none;">
+                <div class="Recurbox">
                   <label>Your Recurrings:</label>
                     <select id="Recur2" name="Recur2">
                         <option value="">n/a</option><br>
                         <option value="New">New</option><br>
                     <?php foreach($recurring as $recur) { ?>
                         <option value="<?=$recur['name']?>"><?=$recur['name']?></option><br>
-                    <? } ?>
-                    </select><br>
+                    <?php } ?>
+                    </select>
                 </div>
 
                 <label>Project Name:</label><input type="text" name="project"><br>
@@ -233,8 +232,8 @@
                 <label>Agenda:</label><br> <textarea class="agenda richtext" name="agenda"></textarea><br>
                 <input type="submit" name="newmeeting" value="Let's do this"></input>
               </form>
-              </div>
-            </div>
+             </div>
+         </div>
 
           <div id="tabs-3">
               <input class="searchinput" type="text" id="search2" type="text" placeholder="Search here">
@@ -260,9 +259,9 @@
                           <td><?=$archive['recur']?></td>
                           <td><a href="/admin/active/<?=$archive['meetings_id']?>">Move</td>
                         </tr>
-                    <?php  }
-                  }?>
-                <?php if($archived ==null){?>
+                    <?php  } ?>
+                <?php  } ?>
+                <?php if($archived == null){?>
                           </tbody>
                           </table>
                           <?php echo "You do not have any meetings archived.";
@@ -272,8 +271,7 @@
           </div>
 
           <div id="tabs-4">
-
-              <input class="searchinput" type="text" id="search3" type="text" placeholder="Search here">
+              <input class="searchinput" type="text" id="search3" type="text" placeholder="Search here"></input>
                 <h3>Upcoming Follow Ups</h3>
                 <p>These are your outstanding follow ups</p>
                   <table class="table table-hover">
