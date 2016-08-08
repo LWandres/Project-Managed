@@ -56,7 +56,7 @@ class users extends CI_Model {
 		return $this->db->query("SELECT * from users WHERE email=?",$email)->row_array();
 	}
 	public function get_newuser_id(){
-		$id= $this->db->query("SELECT MAX(id) FROM users")->row_array();
+		return $this->db->query("SELECT MAX(id) FROM users")->row_array();
 	}
 
 	public function updateprofile($id,$newprofile){

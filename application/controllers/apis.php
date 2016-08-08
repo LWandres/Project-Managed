@@ -1,5 +1,4 @@
-
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
 //Main controller for external integrations
 class apis extends CI_Controller {
 		public function __construct(){
@@ -68,9 +67,9 @@ class apis extends CI_Controller {
 			$message .= '<p style="text-align:center;color:white;font-size:15px">In preparation for your upcoming meeting, you can access the meeting notes by using the button below.</p>';
 			$message .= '<a style="text-decoration:none;margin-left:36%;background:rgb(25, 176, 153);padding:20px;width:200px;border:none;color:white;font-style:bold;font-size:20px" href="localhost:8888/admin/viewnotes/'.$meetid.'">Access Meeting Agenda</a></div></body></html>';
 			// Sending email
-			mail($to, $subject, $message, $headers);
-			?><script>alert("Your emails have sent successfully!");</script><?php
-			redirect('/display/loaddashboard');
+			$result = mail($to, $subject, $message, $headers);
+			var_dump($result);
+			// redirect('/display/loaddashboard');
 	}
 
 	//generates a meeting agenda PDF for download

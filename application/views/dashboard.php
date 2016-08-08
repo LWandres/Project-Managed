@@ -27,6 +27,26 @@
                       $(".Recurbox").hide()
                     }
                 });
+
+                var max_fields = 30; //maximum input boxes allowed
+                var wrapper = $(".input_fields_wrap"); //Fields wrapper
+                var add_button = $(".add_field_button"); //Add button ID
+
+                var x = 1; //initlal text box count
+                $(add_button).click(function(e){ //on add input button click
+                    e.preventDefault();
+                    if(x < max_fields){ //max input box allowed
+                        x++; //text box increment
+                        $(wrapper).append('<div><tr><td><input type="text" name="first[]" class="participants"></td><td><input type="text" name="last[]" class="participants"></td><td><input type="text" name="email[]" class="participants"></td><td></tr><a href="#" class="remove_field">Remove</a></div>');
+                    }
+                });
+
+                $(wrapper).on("click", ".remove_field", function(e) { //user click on remove text
+                    e.preventDefault();
+                    $(this).parent('div').remove();
+                    x--;
+                });
+
                 $("#search,#search2,#search3").keyup(function () {
                     var value = this.value.toLowerCase().trim();
 
@@ -55,6 +75,7 @@
                       }
                   }
                   function getCellValue(row, index){ return $(row).children('td').eq(index).html() }
+
               });
 
               tinymce.init({
@@ -173,18 +194,43 @@
                     <?php } ?>
                     </select>
                 </div>
-                    <label>Project Name:</label>
-                    <input type="text" id="project" name="project"></input><br>
-                    <label>Meeting Name:</label>
-                    <input type="text" id="meeting" name="meeting"></input><br>
-                    <label>Meeting Date:</label><input type="date" id="meetingdate" name="meetingdate"></input><br>
-                    <label>Starting:</label><input type="time"  name="start" step=900></input><br>
-                    <label>Ending:</label><input type="time" name="end" step=900></input><br>
-                    <label>Objectives:</label><textarea class="objectives richtext" name="objectives"></textarea><br>
-                    <label>Goals:</label><br><textarea class="goals richtext" name="goals" ></textarea><br>
-                    <label>Participants:</label><br> <textarea name="participants"></textarea><br>
-                    <label>Agenda:</label><br><textarea class="agenda richtext" name="agenda"></textarea><br>
-                    <input type="submit" name="newmeeting" value="Let's do this"></input>
+
+                <label>Project Name:</label><input type="text" name="project"><br>
+                <label>Meeting Name:</label><input type="text" name="meeting"><br>
+                <label>Meeting Date:</label><input type="date" name="meetingdate"><br>
+                <label>Starting:</label><input type="time" name="start" step=900><br>
+                <label>Ending:</label><input type="time" name="end" step=900><br>
+                <label>Objectives:</label><textarea class="objectives richtext" name="objectives"></textarea><br>
+                <label>Goals:</label><br><textarea class="goals richtext" name="goals" ></textarea><br>
+                <label>Participants:</label><br>
+                <div class="input_fields_wrap">
+                    <button class="add_field_button btn btn-primary">Add New Participant</button>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="participantheader">First</th>
+                                <th class="participantheader">Last</th>
+                                <th class="participantheader">Email</th>
+                            <tr>
+                        </thead>
+                        <tbody>
+                            <div>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </div>
+                        </tbody>
+                    </table>
+                </div>
+                <label>OR Paste Participants from Gmail or Outlook Here:</label>
+                    <p><span class="attendeenotes"> NOTE: For gmail, place your cursor in the "To" line & press shift and the up arrow.</p></span>
+                    <p><span class="attendeenotes"> From there, copy recipients using CTRL + C and paste into your meeting agenda.</p></span>
+                    <textarea name="participants"></textarea><br>
+
+                <label>Agenda:</label><br> <textarea class="agenda richtext" name="agenda"></textarea><br>
+                <input type="submit" name="newmeeting" value="Let's do this"></input>
               </form>
              </div>
          </div>

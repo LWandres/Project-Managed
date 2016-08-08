@@ -12,9 +12,14 @@ class admin extends CI_Controller {
 	public function edit($id){
 		$agenda= $this->meetings->get_agenda($id);
 		$attendees= $this->meetings->get_participants($id);
+		$followups= $this->meetings->get_followups($id);
+		$followups1= "This meeting does not have any followups";
 		$data=array(
 			'agenda'=>$agenda,
-			'attendees'=>$attendees);
+			'attendees'=>$attendees,
+			'followups1'=> $followups1,
+			'followups'=>$followups
+		);
 		$this->load->view('meeting',$data);
 	}
 
@@ -22,9 +27,14 @@ class admin extends CI_Controller {
 	public function meetinginfo($id){
 		$agenda= $this->meetings->get_agenda($id);
 		$attendees= $this->meetings->get_participants($id);
+		$followups= $this->meetings->get_followups($id);
+		$followups1= "This meeting does not have any followups";
 		$data=array(
 			'agenda'=>$agenda,
-			'attendees'=>$attendees);
+			'attendees'=>$attendees,
+			'followups1'=> $followups1,
+			'followups'=>$followups
+		);
 		$this->load->view('agenda',$data);
 	}
 

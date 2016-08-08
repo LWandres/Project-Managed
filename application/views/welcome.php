@@ -14,7 +14,7 @@
 		<h3>30,000 Foot View</h3>
 		<p>Being a project manager is no easy feat. From back-to-back meetings, perpetual follow ups, and putting out fires, life can get hectic.
 			<p>Enter <span class="highlight">Project Managed</span>. We're here to help you automate busy work so you can focus on the important things.</p>
-			<p><span class="highlight"> Take control back over your meetings.</span>
+			<p><span class="highlight"> Regain control of your meetings.</span>
 				<br> Check us out- 100% free.</p>
 	</div>
 
@@ -32,7 +32,7 @@
 				<img src="assets/images/meet.jpg" alt="img04" />
 				<figcaption>
 					<h2>MEET</h2>
-					<p>Centralize Notes, Track Priorities, Track Follow Ups</p>
+					<p>Centralizes Notes, Tracks Priorities & Follow Ups</p>
 					<a href="#">View more</a>
 				</figcaption>
 			</figure>
@@ -48,7 +48,7 @@
 				<img src="assets/images/repeat.jpg" alt="img15" />
 				<figcaption>
 					<h2>REPEAT</h2>
-					<p>Support for Recurring Meetings & Overlapping Projects</p>
+					<p>Supports Recurring Meetings & Overlapping Projects</p>
 					<a href="#">View more</a>
 				</figcaption>
 			</figure>
