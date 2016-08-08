@@ -183,8 +183,19 @@ div.mce-edit-area {
 }
 .objectives, .goals, .attendees, .agenda {
     margin-bottom: 2%;
-    padding: 2%;
     font-size: 1.2em;
+}
+
+#agenda > div.goals > ul > li > span{
+    display:block;
+}
+
+#agenda > div.Agenda > ul > li > span{
+    display: block;
+}
+
+#agenda > div.objectives > ul > li> span {
+    display:block;
 }
 iframe {
     height: 100% !important;
