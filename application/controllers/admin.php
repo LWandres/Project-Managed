@@ -10,16 +10,17 @@ class admin extends CI_Controller {
 
 	//edit link on dashboard
 	public function edit($id){
-		$agenda= $this->meetings->get_agenda($id);
-		$attendees= $this->meetings->get_participants($id);
-		$followups= $this->meetings->get_followups($id);
-		$followups1= "This meeting does not have any followups";
-		$data=array(
-			'agenda'=>$agenda,
-			'attendees'=>$attendees,
-			'followups1'=> $followups1,
-			'followups'=>$followups
-		);
+  		$agenda= $this->meetings->get_agenda($id);
+  		$attendees= $this->meetings->get_participants($id);
+ 		$followups= $this->meetings->get_followups($id);
+ 		$followups1= "This meeting does not have any followups";
+  		$data=array(
+  			'agenda'=>$agenda,
+ 			'attendees'=>$attendees,
+ 			'attendees'=>$attendees,
+ 			'followups1'=> $followups1,
+ 			'followups'=>$followups
+ 		);
 		$this->load->view('meeting',$data);
 	}
 
