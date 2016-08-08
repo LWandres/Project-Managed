@@ -186,15 +186,15 @@ div.mce-edit-area {
     font-size: 1.2em;
 }
 
-#agenda > div.goals > ul > li > span{
+#agenda > div.goals > ul > li{
     display:block;
 }
 
-#agenda > div.Agenda > ul > li > span{
+#agenda > div.Agenda > ul > li{
     display: block;
 }
 
-#agenda > div.objectives > ul > li> span {
+#agenda > div.objectives > ul > li{
     display:block;
 }
 iframe {
