@@ -153,6 +153,26 @@ h3 {
     line-height: 15.4px;
 }
 
+#new_meeting_form > form > p> span{
+    font-size:.8em;
+    margin-left: 1%;
+}
+
+input.participants{
+    width: 25% !important;
+}
+
+th.participantheader{
+    width:250px;
+}
+
+#new_meeting_form > form > div.input_fields_wrap > table{
+    margin-top: 2%;
+}
+
+#new_meeting_form > form > div.input_fields_wrap{
+    margin-bottom:3%;
+}
 /*Rich Text editor*/
 
 div.mce-edit-area {

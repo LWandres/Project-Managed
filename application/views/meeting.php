@@ -55,11 +55,11 @@
 <body>
     <div id="background">
         <div class="email">
-            <form method="post" action="/APIS/sendemail/<?=$agenda['id']?>">
+            <form method="post" action="/apis/sendemail/<?=$agenda['id']?>">
                 <input type="submit" name="email" value="Email Notes to Participants"></input>
             </form>
 
-            <form method="post" action="/APIS/createPDF/<?=$agenda['id']?>">
+            <form method="post" action="/apis/createPDF/<?=$agenda['id']?>">
                 <input type="submit" name="PDF" value="Create PDF"></input>
             </form>
         </div>
@@ -86,7 +86,8 @@
 
                     <h4>Attendees</h4>
                     <div class="attendees">
-                        <?php foreach($attendees as $attendee){ ?>
+                        <?php foreach($attendees as $attendee){ 
+                              $attendees ?>
                         <input type="checkbox" name="attendee[]" value="<?=$attendee['users_id']?>">
                         <?=$attendee['first']." ".$attendee['last']?>
                             </input><br>
@@ -104,7 +105,7 @@
 
                 <h4>Meeting Follow Ups</h4>
                 <div class="FollowUps">
-                    <form class="followtable" method="post" action="/Main/updatefollows/<?=$agenda['id']?>">
+                    <form class="followtable" method="post" action="/main/updatefollows/<?=$agenda['id']?>">
                         <div class="input_fields_wrap">
                             <button class="add_field_button">Add New Followup</button>
                             <input type="hidden" name="meetingid" value="<?=$agenda['id']?>"></input>
@@ -127,6 +128,18 @@
                                             <td></td>
                                         </tr>
                                     </div>
+                                    <?php if(empty($followups)){ echo "<tr>This meeting doesn't have any follow ups yet<tr>";
+                                    } ?>
+                                   <?php if(!empty($followups)){
+                                           foreach($followups as $follow){ ?>
+                                                <tr>
+                                                   <td><?=$follow['first']?> <?=$follow['last']?></td>
+                                                   <td><?=$follow['followup']?></td>
+                                                   <td><?= date('F m, Y',strtotime($follow['duedate']))?></td>
+                                                   <td><?=$follow['status']?></td>
+                                                 </tr>
+                                               <?php }
+                                         }?>
                                 </tbody>
                             </table>
                         </div>

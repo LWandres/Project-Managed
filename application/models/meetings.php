@@ -48,7 +48,7 @@ class meetings extends CI_Model {
 		$query="SELECT id FROM recurringseries WHERE recurname= ?";
 		$values=array($meetinginfo['Recur2']);
 		$arrayid= $this->db->query($query,$values)->row_array();
- 		$id= $arrayid['id'];
+ 		$id = $arrayid['id'];
 		//create a new meeting
 		$query="INSERT INTO meetings(recurringseries_id,recur,name,projectname,date,start,end,objective,goals,agenda,status,created_at,updated_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,NOW(),NOW())";
 		$values= array($id,$meetinginfo['Recur'],$meetinginfo['meeting'],$meetinginfo['project'],$meetinginfo['meetingdate'],$meetinginfo['start'],$meetinginfo['end'],$meetinginfo['objectives'],$meetinginfo['goals'],$meetinginfo['agenda'],'Active');
@@ -109,6 +109,7 @@ class meetings extends CI_Model {
 			$this->db->query($query,$values);
 		}
 	}
+
 
 //followups
 	public function insertfollowups($owners,$followup,$dues,$statuses,$id){

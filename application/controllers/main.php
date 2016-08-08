@@ -67,8 +67,10 @@ class main extends CI_Controller {
 		$ids= $this->meetings->get_meetid();
 		$id= $ids['MAX(id)'];
 		//prepare user information for import to the phpmailer and to the agendas
-		$splituser = explode(",", $meetinginfo['participants']);
-		foreach($splituser as $user){
+
+		if (!empty($meetinginfo['participants'])){
+			$splituser = explode(",", $meetinginfo['participants']);
+			foreach($splituser as $user){
 				$splitemail= explode(" <",$user);
 				$fullname=trim($splitemail[0]," ");
 				$fullsplit=explode(" ",$fullname);
@@ -86,11 +88,32 @@ class main extends CI_Controller {
 					$this->users->update_meeting_users($exists['id'],$id);
 				}
 			}
-			$agenda= $this->meetings->get_agenda($id);
+		} else{
+			foreach ($meetinginfo['first'] as $key => $user){
+				$email = $meetinginfo['email'][$key];
+				$exists = $this->users->check_email_exists($email);
+				if(empty($exists)){
+					$this->users->create_new_participant($meetinginfo['first'][$key],$meetinginfo['last'][$key],$email);
+					$newuser = $this->users->get_newuser_id();
+					$this->users->update_meeting_users($newuser['MAX(id)'],$id);;
+				}
+				else if(!empty($exists)){
+					$this->users->update_meeting_users($exists['id'],$id);
+				}
+			}
+		}
+			$agenda = $this->meetings->get_agenda($id);
+			$agenda = $this->meetings->get_agenda($id);
+			$agenda = $this->meetings->get_agenda($id);
+			$agenda = $this->meetings->get_agenda($id);
+
 			$attendees= $this->meetings->get_participants($id);
+			$attendees= $this->meetings->get_participants($id);
+			$attendees= $this->meetings->get_participants($id);
+
 			$data=array(
 				'agenda'=>$agenda,
-				'attendees'=>$attendees);
+				'attendees'=> $attendees);
 			$this->load->view('agenda',$data);
 		}
 
