@@ -158,12 +158,12 @@ h3 {
    margin-left: 1%;
 }
 
-input.participants{
+#new_meeting_form > form > div.input_fields_wrap{
     width: 25% !important;
 }
 
 th.participantheader{
-    width:250px;
+    width:250px !important;
 }
 
 #new_meeting_form > form > div.input_fields_wrap > table{
