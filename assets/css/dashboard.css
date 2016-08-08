@@ -158,11 +158,11 @@ h3 {
    margin-left: 1%;
 }
 
-#new_meeting_form > form > div.input_fields_wrap{
+#new_meeting_form > form > div.input_fields_wrap > div > input{
     width: 25% !important;
 }
 
-th.participantheader{
+#new_meeting_form th{
     width:250px !important;
 }
 
