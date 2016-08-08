@@ -87,7 +87,7 @@
 
                     <h4>Attendees</h4>
                     <div class="attendees">
-                        <?php foreach($attendees as $attendee){ 
+                        <?php foreach($attendees as $attendee){
                               $attendees ?>
                         <input type="checkbox" name="attendee[]" value="<?=$attendee['users_id']?>">
                         <?=$attendee['first']." ".$attendee['last']?>
