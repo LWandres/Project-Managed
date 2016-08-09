@@ -80,6 +80,10 @@
 .email form {
     display: inline-block;
 }
+.emailportal{
+    margin-left:80%;
+
+}
 #notes-container> div.email> form:nth-child(2) {
     margin: 0px;
 }

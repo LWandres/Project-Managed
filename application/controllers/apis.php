@@ -38,10 +38,10 @@ class apis extends CI_Controller {
 
 			//HTML and message content
 			$mail->Subject =  'Action Required: Follow Up Due on '. $duedate .'';
-			$mail->Body    = '<html><body><div style="background:black;width:800px;margin:0px auto;margin-top:10px;margin-bottom:40px;padding:40px;font-family:tahoma;color:white;font-size:14px"><h1 style="color:white;text-align:center;margin-top:10px">Hi from Project Managed!</h1><br><p style="text-align:center;color:white;font-size:16px">This is a friendly reminder that you have followups from the meeting '.$meeting.' <br>Your follow up is: '.$task['followup'].'<br> You can access meeting notes by using the button below.</p><br><br><br><br><a style="text-decoration:none;margin-left:38%;background:rgb(25, 176, 153);padding:20px;width:200px;border:none;color:white;font-style:bold;font-size:20px" href="http://52.40.19.212/admin/viewnotes/'.$meetid.'">Access Meeting Agenda</a></div></body></html>';
+			$mail->Body    = '<html><body><div style="background:black;width:800px;margin:0px auto;margin-top:10px;margin-bottom:40px;padding:40px;font-family:tahoma;color:white;font-size:14px"><h1 style="color:white;text-align:center;margin-top:10px">Hi from Project Managed!</h1><br><p style="text-align:center;color:white;font-size:16px">This is a friendly reminder that you have followups from the meeting '.$meeting.' <br>Your follow up is: '.$task['followup'].'<br> You can access meeting notes by using the button below.</p><br><br><br><br><a style="text-decoration:none;margin-left:38%;background:rgb(25, 176, 153);padding:20px;width:200px;border:none;color:white;font-style:bold;font-size:20px" href="http://52.40.19.212/admin/viewnotesemail/'.$meetid.'">Access Meeting Agenda</a></div></body></html>';
 			$mail->AltBody = 'Hi from Project Managed! This is a friendly reminder that you have followups from the meeting: '.$meeting.'<br>
 							  Your follow up is: ' .$task['followup']. ' <br>
-							  You can access meeting notes by using this url: http://52.40.19.212/admin/viewnotes/'.$meetid.'';
+							  You can access meeting notes by using this url: http://52.40.19.212/admin/viewnotesemail/'.$meetid.'';
 			$mail->send();
 		}
 		redirect('/display/loaddashboard');
@@ -70,9 +70,9 @@ class apis extends CI_Controller {
 				$mail->addReplyTo('pmmanaged@gmail.com', 'Information');
 				$mail->isHTML(true);
 				$mail->Subject = 'Agenda Notes for '.$agenda['name'].'';
-				$mail->Body    = '<html><body><div style="background:black;width:800px;margin:0px auto;margin-top:10px;margin-bottom:40px;padding:40px;font-family:tahoma;color:white;font-size:1em"><h1 style="color:white;text-align:center;margin-top:10px">Hi from Project Managed!</h1><p style="text-align:center;color:white;font-size:14px">In preparation for your upcoming meeting, <b>'.$agenda['name'].'</b> you can access the email agenda by clicking the button below.<br><br><br><br><a style="text-decoration:none;background:rgb(25, 176, 153);padding:20px;width:200px;border:none;color:white;font-style:bold;font-size:20px;margin-top:50px;margin-left:10%" href="http://52.40.19.212/admin/viewnotes/'.$meetid.'">Access Meeting Agenda</a></div></body></html>';
+				$mail->Body    = '<html><body><div style="background:black;width:800px;margin:0px auto;margin-top:10px;margin-bottom:40px;padding:40px;font-family:tahoma;color:white;font-size:1em"><h1 style="color:white;text-align:center;margin-top:10px">Hi from Project Managed!</h1><p style="text-align:center;color:white;font-size:14px">In preparation for your upcoming meeting, <b>'.$agenda['name'].'</b> you can access the email agenda by clicking the button below.<br><br><br><br><a style="text-decoration:none;background:rgb(25, 176, 153);padding:20px;width:200px;border:none;color:white;font-style:bold;font-size:20px;margin-top:50px;margin-left:10%" href="http://52.40.19.212/admin/viewnotesemail/'.$meetid.'">Access Meeting Agenda</a></div></body></html>';
 				$mail->AltBody = 'Hi from Project Managed! In preparation for your upcoming meeting '.$agenda['name'].' , you can access the meeting agenda via the URL below.
-								 http://52.40.19.212/admin/viewnotes/'.$meetid.'';
+								 http://52.40.19.212/admin/viewnotesemail/'.$meetid.'';
 				  if(!$mail->send()) {
 					  echo 'Message could not be sent.';
 					  echo 'Mailer Error: ' . $mail->ErrorInfo;

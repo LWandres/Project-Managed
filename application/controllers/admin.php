@@ -65,4 +65,20 @@ class admin extends CI_Controller {
 		$this->load->view('meetingnotes',$data);
 	}
 
+	//View notes hyperlink on dashboard
+	public function viewnotesemail($id){
+		$notes= $this->meetings->get_agenda($id);
+		$attendees= $this->meetings->get_participants($id);
+		$followups= $this->meetings->get_followups($id);
+		$followups1= "This meeting does not have any followups";
+		$data=array(
+			'agenda'=>$notes,
+			'attendees'=>$attendees,
+			'followups1'=> $followups1,
+			'followups'=>$followups);
+		$this->load->view('meetingnotesportal',$data);
+	}
+
+
+
 }
