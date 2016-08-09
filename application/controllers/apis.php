@@ -1,4 +1,6 @@
 <?php
+require (BASEPATH.'libraries/PHPMailerAutoload.php');
+require(BASEPATH.'libraries/class.phpmailer.php');
 //Main controller for external integrations
 class apis extends CI_Controller {
 		public function __construct(){
@@ -16,60 +18,68 @@ class apis extends CI_Controller {
 			$followup = $task['followup'];
 			$meeting = $task['name'];
 			$duedate = date('F m Y', strtotime($task['duedate']));
-			$to = $email_to;
-			$subject = 'Action Required: Follow Up Due on'. $duedate .'<br>';
-			$from = 'projectmanaged@gmail.com';
-			// To send HTML mail, the Content-type header must be set
-			$headers  = 'MIME-Version: 1.0' . "\r\n";
-			$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-			// Create email headers
-			$headers .= 'From: '.$from."\r\n".
-			    'Reply-To: '.$from."\r\n" .
-			    'X-Mailer: PHP/' . phpversion();
-			// Compose a simple HTML email message
-			$message = '<html><body>';
-			$message .= '<div style="background:black;width:500px;margin:0px auto;margin-top:10px;margin-bottom:40px;padding:40px;font-style:tahoma"><h1 style="color:white;text-align:center;margin-top:10px>Hi from Project Managed!</h1>';
-			$message .= '<p style="text-align:center;color:white;font-size:15px">This is a friendly reminder that you have followups from the meeting'.$meeting.'<br>';
-			$message .= 'Your follow up is:'.$task['followup'].'<br>';
-			$message .= 'You can access meeting notes by using the button below.</p>';
-			$message .= '<a style="text-decoration:none;margin-left:36%;background:rgb(25, 176, 153);padding:20px;width:200px;border:none;color:white;font-style:bold;font-size:20px" href="localhost:8888/admin/viewnotes/'.$meetid.'">Access Meeting Agenda</a></div></body></html>';
-			// Sending email
-			mail($to, $subject, $message, $headers);
+
+			//PHP MAILER WITH SMTP
+			$mail = new PHPMailer;
+			$mail->isSMTP();
+			// $mail->SMTPDebug = 4;                           	// Enable verbose debug output
+			$mail->Host = 'smtp.gmail.com';  					// Specify main and backup SMTP servers
+			$mail->SMTPAuth = true;                             // Enable SMTP authentication
+			$mail->Username = 'pmmanaged@gmail.com';            // SMTP username
+			$mail->Password = 'pmpcert2016';                    // SMTP password
+			$mail->SMTPSecure = 'tls';                          // Enable TLS encryption, `ssl` also accepted
+			$mail->Port = 587;
+
+			$mail->setFrom('pmmanaged@gmail.com', 'Project Managed');
+			$mail->addAddress(''.$email_to.'');
+			$mail->addReplyTo('pmmanaged@gmail.com', 'Information');
+			$mail->addBCC('lew4f08@gmail.com');
+			$mail->isHTML(true);
+
+			//HTML and message content
+			$mail->Subject =  'Action Required: Follow Up Due on '. $duedate .'';
+			$mail->Body    = '<html><body><div style="background:black;width:800px;margin:0px auto;margin-top:10px;margin-bottom:40px;padding:40px;font-family:tahoma;color:white;font-size:14px"><h1 style="color:white;text-align:center;margin-top:10px">Hi from Project Managed!</h1><br><p style="text-align:center;color:white;font-size:16px">This is a friendly reminder that you have followups from the meeting '.$meeting.' <br>Your follow up is: '.$task['followup'].'<br> You can access meeting notes by using the button below.</p><br><br><br><br><a style="text-decoration:none;margin-left:38%;background:rgb(25, 176, 153);padding:20px;width:200px;border:none;color:white;font-style:bold;font-size:20px" href="http://52.40.19.212/admin/viewnotes/'.$meetid.'">Access Meeting Agenda</a></div></body></html>';
+			$mail->AltBody = 'Hi from Project Managed! This is a friendly reminder that you have followups from the meeting: '.$meeting.'<br>
+							  Your follow up is: ' .$task['followup']. ' <br>
+							  You can access meeting notes by using this url: http://52.40.19.212/admin/viewnotes/'.$meetid.'';
+			$mail->send();
 		}
 		redirect('/display/loaddashboard');
 	}
 
-
 	//send email button directly on meeting agenda pages
 	public function sendemail($meetid){
-		$agenda = $this->meetings->get_agenda($meetid);
+		$agenda= $this->meetings->get_agenda($meetid);
 		$attendees= $this->meetings->get_participants($meetid);
 		$recipients=$this->users->sendemails($meetid);
-		 foreach ($recipients as $recipient){
-			 foreach($recipient as $value){
-			 	$email[]=$value;
-			}
-		 }
-		 	$email_to = implode(',', $email); // your email address
-			$to = $email_to;
-			$subject = 'Agenda Notes';
-			$from = 'projectmanaged@gmail.com';
-			// To send HTML mail, the Content-type header must be set
-			$headers  = 'MIME-Version: 1.0' . "\r\n";
-			$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-			// Create email headers
-			$headers .= 'From: '.$from."\r\n".
-			    'Reply-To: '.$from."\r\n" .
-			    'X-Mailer: PHP/' . phpversion();
-			// Compose a simple HTML email message
-			$message = '<html><body>';
-			$message .= '<div style="background:black;width:500px;margin:0px auto;margin-top:0px;margin-bottom:40px;padding:40px;font-style:tahoma"><h1 style="color:white;text-align:center;margin-top:10px>Hi from Project Managed!</h1>';
-			$message .= '<p style="text-align:center;color:white;font-size:15px">In preparation for your upcoming meeting, you can access the meeting notes by using the button below.</p>';
-			$message .= '<a style="text-decoration:none;margin-left:36%;background:rgb(25, 176, 153);padding:20px;width:200px;border:none;color:white;font-style:bold;font-size:20px" href="localhost:8888/admin/viewnotes/'.$meetid.'">Access Meeting Agenda</a></div></body></html>';
-			// Sending email
-			$result = mail($to, $subject, $message, $headers);
-			var_dump($result);
-			// redirect('/display/loaddashboard');
+
+		$mail = new PHPMailer;
+
+		foreach ($recipients as $recipient => $value){
+			if($value['email'] != null){
+				$mail->addAddress(''.$value['email'].'');
+				$mail->isSMTP();
+				// $mail->SMTPDebug = 4;                               // Enable verbose debug output
+				$mail->Host = 'smtp.gmail.com';  					// Specify main and backup SMTP servers
+				$mail->SMTPAuth = true;                             // Enable SMTP authentication
+				$mail->Username = 'pmmanaged@gmail.com';            // SMTP username
+				$mail->Password = 'pmpcert2016';                    // SMTP password
+				$mail->SMTPSecure = 'tls';                          // Enable TLS encryption, `ssl` also accepted
+				$mail->Port = 587;
+				$mail->setFrom('pmmanaged@gmail.com', 'Project Managed');
+				$mail->addReplyTo('pmmanaged@gmail.com', 'Information');
+				$mail->isHTML(true);
+				$mail->Subject = 'Agenda Notes for '.$agenda['name'].'';
+				$mail->Body    = '<html><body><div style="background:black;width:800px;margin:0px auto;margin-top:10px;margin-bottom:40px;padding:40px;font-family:tahoma;color:white;font-size:1em"><h1 style="color:white;text-align:center;margin-top:10px">Hi from Project Managed!</h1><p style="text-align:center;color:white;font-size:14px">In preparation for your upcoming meeting, <b>'.$agenda['name'].'</b> you can access the email agenda by clicking the button below.<br><br><br><br><a style="text-decoration:none;background:rgb(25, 176, 153);padding:20px;width:200px;border:none;color:white;font-style:bold;font-size:20px;margin-top:50px;margin-left:10%" href="http://52.40.19.212/admin/viewnotes/'.$meetid.'">Access Meeting Agenda</a></div></body></html>';
+				$mail->AltBody = 'Hi from Project Managed! In preparation for your upcoming meeting '.$agenda['name'].' , you can access the meeting agenda via the URL below.
+								 http://52.40.19.212/admin/viewnotes/'.$meetid.'';
+				  if(!$mail->send()) {
+					  echo 'Message could not be sent.';
+					  echo 'Mailer Error: ' . $mail->ErrorInfo;
+				  }
+	   		}
+   		}
+		redirect('/display/loaddashboard');
 	}
 
 	//generates a meeting agenda PDF for download

@@ -226,7 +226,7 @@
                 </div>
                 <label>(OR Paste Participants from Gmail or Outlook Here):</label>
                     <p><span class="attendeenotes"> NOTE: For gmail, place your cursor in the "To" line & press shift and the up arrow.</p></span>
-                    <p><span class="attendeenotes"> From there, copy recipients using CTRL + C and paste into your meeting agenda.</p></span>
+                    <p><span class="attendeenotes"> Then copy recipients using CTRL + C and paste into your meeting agenda.</p></span>
                     <textarea name="participants"></textarea><br>
 
                 <label>Agenda:</label><br> <textarea class="agenda richtext" name="agenda"></textarea><br>

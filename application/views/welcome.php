@@ -24,7 +24,7 @@
 				<img src="assets/images/Prep.jpg" alt="img15" />
 				<figcaption>
 					<h2>Prep</h2>
-					<p> Streamlines Agenda Creation & Reduces Communication overhead & email volumes</p>
+					<p> Streamlines Agenda Creation & Reduces Email Volumes</p>
 					<a href="#">View more</a>
 				</figcaption>
 			</figure>
