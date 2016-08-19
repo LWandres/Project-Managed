@@ -12,20 +12,20 @@ class users extends CI_Model {
 
 	public function register($post){
 		$this->load->library('form_validation');
-	    $this->form_validation->set_error_delimiters('<p class="error">', '</p>');
-	    $this->form_validation->set_rules('firstname', 'First Name', 'trim|required');
+		$this->form_validation->set_error_delimiters('<p class="error">', '</p>');
+		$this->form_validation->set_rules('firstname', 'First Name', 'trim|required');
 		$this->form_validation->set_rules('lastname', 'Last Name', 'trim|required');
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[users.email]');
-	    $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[3]|matches[confirmpassword]');
-	    $this->form_validation->set_rules('confirmpassword', 'Password Confirmation', 'trim|required|min_length[3]');
-	    if($this->form_validation->run()){
-	      $query = "INSERT INTO users (first,last,email,password,status,created_at,updated_at) VALUES (?,?,?,?,?,NOW(),NOW())";
-	      $values = array($post['firstname'], $post['lastname'], $post['email'],md5($post['password']),"Active");
+	    	$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[3]|matches[confirmpassword]');
+		$this->form_validation->set_rules('confirmpassword', 'Password Confirmation', 'trim|required|min_length[3]');
+	    	if($this->form_validation->run()){
+			$query = "INSERT INTO users (first,last,email,password,status,created_at,updated_at) VALUES (?,?,?,?,?,NOW(),NOW())";
+			$values = array($post['firstname'], $post['lastname'], $post['email'],md5($post['password']),"Active");
 	      // if query runs correctly
-	      if($this->db->query($query, $values)){
-	        $id = $this->db->insert_id();
-	        $success = array('valid', $id);
-	        return $success;
+	      	if($this->db->query($query, $values)){
+	        	$id = $this->db->insert_id();
+			$success = array('valid', $id);
+	        	return $success;
 	      } else {
 	        return false;
 	      }
@@ -78,9 +78,8 @@ class users extends CI_Model {
 	}
 
 	public function sendemails($id){
-		return $this->db->query("SELECT email FROM users_has_meetings
-								LEFT JOIN users on users.id=users_has_meetings.users_id
-								Where users_has_meetings.meetings_id=?",$id)->result_array();
+		return $this->db->query("SELECT email FROM users_has_meetings LEFT JOIN users on users.id=users_has_meetings.users_id
+					Where users_has_meetings.meetings_id=?",$id)->result_array();
 	}
 
 }
