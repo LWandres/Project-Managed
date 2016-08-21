@@ -13,7 +13,7 @@ class Displays extends CI_Model {
 
 	public function showactiveattend($is_logged){
 		return $this->db->query("SELECT * from meetings LEFT JOIN users_has_meetings ON meetings.id= users_has_meetings.meetings_id
-								WHERE users_has_meetings.users_id=".$is_logged." AND users_has_meetings.owner!=".$is_logged." AND meetings.status='Active'")->result_array();
+								WHERE users_has_meetings.users_id=".$is_logged." AND (users_has_meetings.owner IS NULL OR users_has_meetings.owner!=".$is_logged.") AND meetings.status='Active'")->result_array();
 	}
 
 	public function showarchived($is_logged){
