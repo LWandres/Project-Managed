@@ -72,7 +72,7 @@
                 <h2 id="meetingname">  <?=$agenda['name']?></h2>
 
                 <ul id="date">
-                    <li><?=date('l F m Y',strtotime($agenda['date']))?></li>
+                    <li><?=date('l F d Y',strtotime($agenda['date']))?></li>
                     <li><?= date("g:i a", strtotime($agenda['start']))?> - <?= date("g:i a", strtotime($agenda['end']))?></li>
                 </ul>
                 <form action="/main/updatenotes/<?=$agenda['id']?>" method="post">

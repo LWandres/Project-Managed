@@ -55,7 +55,7 @@
         <a href="/display/loaddashboard" name="back">Back to other meetings</a>
         <h2 id="meetingname">  <?=$agenda['name']?></h2>
             <ul id="date">
-              <li><?=date('l F m Y',strtotime($agenda['date']))?></li>
+              <li><?=date('l F d Y',strtotime($agenda['date']))?></li>
               <li><?= date("g:i a", strtotime($agenda['start']))?> - <?= date("g:i a", strtotime($agenda['end']))?></li>
             </ul>
 
@@ -115,7 +115,7 @@
                                           <tr>
                                              <td><?=$follow['first']?> <?=$follow['last']?></td>
                                              <td><?=$follow['followup']?></td>
-                                             <td><?= date('F m, Y',strtotime($follow['duedate']))?></td>
+                                             <td><?= date('F d, Y',strtotime($follow['duedate']))?></td>
                                              <td><?=$follow['status']?></td>
                                            </tr>
                                          <?php }

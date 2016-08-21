@@ -16,7 +16,7 @@ class apis extends CI_Controller {
 			$email_to = $task['email'];
 			$followup = $task['followup'];
 			$meeting = $task['name'];
-			$duedate = date('F m Y', strtotime($task['duedate']));
+			$duedate = date('F d Y', strtotime($task['duedate']));
 			//PHP MAILER WITH SMTP
 			$mail = new PHPMailer;
 			$mail->isSMTP();
@@ -162,7 +162,7 @@ class apis extends CI_Controller {
 		              <div id="agenda">
 					  <h2 id="meetingname">'.$agenda['name'].'</h2>
 	  			        <ul id="date">
-	  			          <li>'. date('l F m Y',strtotime($agenda['date'])).'</li><br>
+	  			          <li>'. date('l F d Y',strtotime($agenda['date'])).'</li><br>
 	  			          <li>'. date("g:i a", strtotime($agenda['start'])). " - ". date("g:i a", strtotime($agenda['end'])).'</li>
 	  			        </ul>
 		                <h4>Objectives</h4>
