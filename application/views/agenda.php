@@ -60,12 +60,12 @@
             </ul>
 
         <h4>Objectives</h4>
-            <div class="objectives">
-              <?=$agenda['objective']?>
+            <div id="objectives" class="objectives">
+                <?=$agenda['objective']?>
             </div>
 
         <h4>Goals</h4>
-            <div class="goals">
+            <div id="goals" class="goals">
                 <?=$agenda['goals']?>
             </div>
 
@@ -77,7 +77,7 @@
             </div>
 
         <h4>Agenda</h4>
-            <div class="Agenda">
+            <div id="agendacontent" class="Agenda">
                 <?=$agenda['agenda']?>
             </div>
 

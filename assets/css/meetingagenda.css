@@ -37,7 +37,7 @@
 #date {
     padding: 1%;
     font-size: 1.2em;
-    margin-bottom: 2%;
+    margin-bottom: 5%;
 }
 #agenda ul li {
     float: none;
@@ -97,6 +97,21 @@
 }
 #agenda> form> input[type="submit"] {
     float: right;
+}
+
+#agenda li{
+    float:none !important;
+    display: block;
+}
+
+#agenda ol{
+    float:none !important;
+    padding-left:1%;
+    display:block;
+}
+
+#agenda ul{
+    padding:1%;
 }
 #tabs ul li {
     float: none;

@@ -5,7 +5,7 @@
     height: 8000px;
     color: white;
 }
-#container {
+#container{
     width: 900px;
     margin: 0px auto;
     font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
@@ -36,11 +36,15 @@ h2 {
 #tabs ul li {
     float: none;
 }
+#date {
+    padding: 1%;
+    font-size: 1.2em;
+    margin-bottom: 5%;
+}
 #agenda ul li {
     float: none;
-    margin-left: 350px;
-    display: inline;
 }
+
 
 /*Inputs and forms*/
 

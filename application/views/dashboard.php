@@ -18,7 +18,6 @@
     $(document).ready(function(){
         $("#tabs").tabs();
         $(".Recurbox").show();
-        $('.input_fields_wrap').hide();
         $("#copypaste").hide();
         $("#error").hide();
 
@@ -66,12 +65,10 @@
         });
 
         //participants jQuery
-        $('#participantgrid').click(function(){
-            $('.input_fields_wrap').toggle();
-        });
 
         $('#copy').click(function(){
             $('#copypaste').toggle();
+            $('.input_fields_wrap').toggle();
         });
 
         $('th').click(function(){
