@@ -173,6 +173,15 @@ h3 {
 #new_meeting_form > form > div.input_fields_wrap{
     margin-bottom:3%;
 }
+
+#error{
+    color:red;
+    font-size:.8em;
+}
+
+    .attendeenotes{
+        font-size:.9em;
+    }
 /*Rich Text editor*/
 
 div.mce-edit-area {
@@ -196,6 +205,10 @@ div.mce-edit-area {
 
 #agenda > div.objectives > ul > li{
     display:block;
+}
+
+#participants {
+    height:300px;
 }
 iframe {
     height: 100% !important;

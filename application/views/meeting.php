@@ -70,19 +70,26 @@
             <div id="agenda">
                 <a href="/display/loaddashboard" name="back">Back to other meetings</a>
                 <h2 id="meetingname">  <?=$agenda['name']?></h2>
+
                 <ul id="date">
                     <li><?=date('l F m Y',strtotime($agenda['date']))?></li>
-                    <li>(<?=date('h:m A',strtotime($agenda['start']))?></li> -<?= date('h:m A',strtotime($agenda['end']))?>)</li>
+                    <li><?= date("g:i a", strtotime($agenda['start']))?> - <?= date("g:i a", strtotime($agenda['end']))?></li>
                 </ul>
                 <form action="/main/updatenotes/<?=$agenda['id']?>" method="post">
+                    <?php $stringdate = date('Y-m-d', strtotime($agenda['date']))?>
+                    <label>Meeting Name:</label><input type="text" name="meeting" value="<?=$agenda['name']?>"><br>
+                    <label>Meeting Date:</label><input type="date" name="meetingdate" value="<?= $stringdate?>"><br>
+                    <label>Starting:</label><input type="time" name="start" step=900 value="<?=$agenda['start']?>"><br>
+                    <label>Ending:</label><input type="time" name="end" step=900 value="<?=$agenda['end']?>"><br>
+
                     <h4>Objectives</h4>
                     <div class="objectives">
-                        <textarea name="objectives"><?=$agenda['objective']?></textarea>
+                        <textarea name="objectives" required><?=$agenda['objective']?></textarea>
                     </div>
 
                     <h4>Goals</h4>
                     <div class="goals">
-                        <textarea name="goals"><?=$agenda['goals']?></textarea>
+                        <textarea name="goals" required><?=$agenda['goals']?></textarea>
                     </div>
 
                     <h4>Attendees</h4>
@@ -97,7 +104,7 @@
 
                     <h4>Agenda & Notes</h4>
                     <div class="Agenda">
-                        <textarea name="agenda" size="200">
+                        <textarea name="agenda" size="200" required>
                             <?=$agenda['agenda']?>
                         </textarea>
                     </div>

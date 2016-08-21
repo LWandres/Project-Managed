@@ -1,12 +1,12 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class main extends CI_Controller {
-		public function __construct(){
-			parent::__construct();
-			$this->load->model('users');
-			$this->load->model('displays');
-			$this->load->model('meetings');
-		}
+	public function __construct(){
+		parent::__construct();
+		$this->load->model('users');
+		$this->load->model('displays');
+		$this->load->model('meetings');
+	}
 
 //Meeting functions
 	public function viewagenda(){
@@ -53,68 +53,71 @@ class main extends CI_Controller {
 //completes creates a new meeting with recurring logic built in as well.
 	public function new_meeting(){
 		$meetinginfo=$this->input->post();
-		if($meetinginfo['Recur']== 'No'){
-			$this->meetings->new_meeting($meetinginfo);
-		}
-		else if($meetinginfo['Recur']== 'Yes'){
-			if($meetinginfo['Recur2']== 'New'){
-				$this->meetings->new_meeting_recur($meetinginfo);
+			if($meetinginfo['Recur']== 'No'){
+				$this->meetings->new_meeting($meetinginfo);
 			}
-			if($meetinginfo['Recur2']!= 'New'){
-				$this->meetings->new_meeting_recurexist($meetinginfo);
+			else if($meetinginfo['Recur']== 'Yes'){
+				if($meetinginfo['Recur2']== 'New'){
+					$this->meetings->new_meeting_recur($meetinginfo);
+				}
+				if($meetinginfo['Recur2']!= 'New'){
+					$this->meetings->new_meeting_recurexist($meetinginfo);
+				}
 			}
-		}
-		$ids= $this->meetings->get_meetid();
-		$id= $ids['MAX(id)'];
-		//prepare user information for import to the phpmailer and to the agendas
+			$ids= $this->meetings->get_meetid();
+			$id= $ids['MAX(id)'];
+			//prepare user information for import to the phpmailer and to the agendas
+			if (!empty($meetinginfo['participants'])){
+				$splituser = explode(",", $meetinginfo['participants']);
+				foreach($splituser as $user){
+					$splitemail= explode(" <",$user);
+					$fullname=trim($splitemail[0]," ");
+					$fullsplit=explode(" ",$fullname);
+					$first= $fullsplit[0];
+					$last= $fullsplit[1];
 
-		if (!empty($meetinginfo['participants'])){
-			$splituser = explode(",", $meetinginfo['participants']);
-			foreach($splituser as $user){
-				$splitemail= explode(" <",$user);
-				$fullname=trim($splitemail[0]," ");
-				$fullsplit=explode(" ",$fullname);
-				$first= $fullsplit[0];
-				$last= $fullsplit[1];
-				$email1=trim($splitemail[1],",");
-				$email=trim($email1,">");
-				$exists= $this->users->check_email_exists($email);
-				if(empty($exists)){
-					$this->users->create_new_participant($first,$last,$email);
-					$newuser= $this->users->get_newuser_id();
-					$this->users->update_meeting_users($newuser['MAX(id)'],$id);;
+					//if there's only a single user that was submitted, handle the user differently
+					if (count($splitemail) > 1){
+						$email1=trim($splitemail[1],",");
+						$email=trim($email1,">");
+					}else{
+						$email1=trim($last," ");
+						$email2= explode("<",$email1);
+						$email=trim($email2[1],">");
+					}
+					$exists= $this->users->check_email_exists($email);
+					if(empty($exists)){
+						$this->users->create_new_participant($first,$last,$email);
+						$newuser= $this->users->get_newuser_id();
+						$this->users->update_meeting_users($newuser['MAX(id)'],$id);;
+					}
+					else if(!empty($exists)){
+						$this->users->update_meeting_users($exists['id'],$id);
+					}
 				}
-				else if(!empty($exists)){
-					$this->users->update_meeting_users($exists['id'],$id);
+			} else{
+				if(isset($meetinginfo['first'])){
+					foreach ($meetinginfo['first'] as $key => $user){
+						$email = $meetinginfo['email'][$key];
+						$exists = $this->users->check_email_exists($email);
+						if(empty($exists)){
+							$this->users->create_new_participant($meetinginfo['first'][$key],$meetinginfo['last'][$key],$email);
+							$newuser = $this->users->get_newuser_id();
+							$this->users->update_meeting_users($newuser['MAX(id)'],$id);;
+						}
+						else if(!empty($exists)){
+							$this->users->update_meeting_users($exists['id'],$id);
+						}
+					}
 				}
 			}
-		} else{
-			foreach ($meetinginfo['first'] as $key => $user){
-				$email = $meetinginfo['email'][$key];
-				$exists = $this->users->check_email_exists($email);
-				if(empty($exists)){
-					$this->users->create_new_participant($meetinginfo['first'][$key],$meetinginfo['last'][$key],$email);
-					$newuser = $this->users->get_newuser_id();
-					$this->users->update_meeting_users($newuser['MAX(id)'],$id);;
-				}
-				else if(!empty($exists)){
-					$this->users->update_meeting_users($exists['id'],$id);
-				}
-			}
-		}
-			$agenda = $this->meetings->get_agenda($id);
-			$agenda = $this->meetings->get_agenda($id);
-			$agenda = $this->meetings->get_agenda($id);
-			$agenda = $this->meetings->get_agenda($id);
+				$agenda = $this->meetings->get_agenda($id);
+				$attendees= $this->meetings->get_participants($id);
 
-			$attendees= $this->meetings->get_participants($id);
-			$attendees= $this->meetings->get_participants($id);
-			$attendees= $this->meetings->get_participants($id);
-
-			$data=array(
-				'agenda'=>$agenda,
-				'attendees'=> $attendees);
-			$this->load->view('agenda',$data);
+				$data=array(
+					'agenda'=>$agenda,
+					'attendees'=> $attendees);
+				$this->load->view('agenda',$data);
 		}
 
 //gets meeting info for the recurring tab
@@ -143,9 +146,13 @@ class main extends CI_Controller {
 //updates full meeting notes
 	public function updatenotes($id){
 		$notes=$this->input->post();
-		$attendees=$notes['attendee'];
-		$this->meetings->update_present($id,$attendees);
-		$this->meetings->updatenotes($id,$notes);
+		if (isset ($notes['attendee'])){
+			$attendees=$notes['attendee'];
+			$this->meetings->update_present($id,$attendees);
+			$this->meetings->updatenotes($id,$notes);
+		}else{
+			$this->meetings->updatenotes($id,$notes);
+		}
 		redirect('/display/loaddashboard');
 	}
 

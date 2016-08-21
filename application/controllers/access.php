@@ -48,7 +48,6 @@ class access extends CI_Controller {
 			$this->session->set_flashdata('reg_errors', $is_valid);
 			// redirect to index
 			redirect('/access/regpage');
-			// show session error messages
 		}
 	}
 	public function logout(){

@@ -88,19 +88,21 @@ class meetings extends CI_Model {
 	}
 
 	public function updatenotes($id,$notes){
-		$query= ("UPDATE meetings SET objective=?, goals=?, notes=? WHERE meetings.id=?");
-		$values= array($notes['objectives'],$notes['goals'],$notes['agenda'],$id);
+		$query= ("UPDATE meetings SET name= ?, date=?, start=?, end=?,objective=?, goals=?, agenda=?,notes=? WHERE meetings.id=?");
+		$values= array($notes['meeting'],$notes['meetingdate'],$notes['start'],$notes['end'],$notes['objectives'],$notes['goals'],$notes['agenda'],$notes['agenda'],$id);
 		return $this->db->query($query,$values);
 	}
 
 	public function update_present($id,$attendees){
-		for($i=0;$i<count($attendees);$i++){
-			$query= "SELECT * from users_has_meetings WHERE meetings_id=? AND users_id=?";
-			$values=array($id,$attendees[$i]);
-			$tableid= $this->db->query($query,$values)->row_array();
-			$query="UPDATE users_has_meetings SET users_has_meetings.present='Yes' WHERE has_meetings_id=?";
-			$values=array('Yes',$tableid['has_meetings_id']);
-			$this->db->query($query,$values);
+		if(!empty($attendees)){
+			for($i=0;$i<count($attendees);$i++){
+				$query= "SELECT * from users_has_meetings WHERE meetings_id=? AND users_id=?";
+				$values=array($id,$attendees[$i]);
+				$tableid= $this->db->query($query,$values)->row_array();
+				$query="UPDATE users_has_meetings SET users_has_meetings.present='Yes' WHERE has_meetings_id=?";
+				$values=array('Yes',$tableid['has_meetings_id']);
+				$this->db->query($query,$values);
+			}
 		}
 	}
 
@@ -116,10 +118,10 @@ class meetings extends CI_Model {
 		return $this->db->query("SELECT * from followups LEFT JOIN users on owner = users.id WHERE meetings_id=$id")->result_array();
 	}
 	public function get_emailfollowups($id){
-		return $this->db->query("SELECT * from followups LEFT JOIN meetings on meetings_id = meetings.id 
-					LEFT JOIN users on followups.owner = users.id
-					WHERE meetings_id = ?",$id)->result_array();
-	}
+		return $this->db->query("SELECT * from followups LEFT JOIN meetings on meetings_id = meetings.id
+								LEFT JOIN users on followups.owner = users.id
+								WHERE meetings_id = ?",$id)->result_array();
+				}
 	public function completefollow($id){
 		return $this->db->query("UPDATE followups SET status='Yes' WHERE followups.id=?",$id);
 	}
@@ -139,8 +141,8 @@ class meetings extends CI_Model {
 
 	public function showrecurring($id){
 		return $this->db->query("Select * FROM meetings LEFT JOIN users_has_meetings on meetings_id = meetings.id
-					WHERE users_has_meetings.users_id = ? AND recur = 'Yes'
-					GROUP by meetings.id",$id)->result_array();
+								WHERE users_has_meetings.users_id = ? AND recur = 'Yes'
+								GROUP by meetings.id",$id)->result_array();
 	}
 
 }

@@ -15,80 +15,117 @@
     <script src="https://cdn.tinymce.com/4/tinymce.min.js"></script>
 
     <script>
-              $(document).ready(function(){
-                $("#tabs").tabs();
+    $(document).ready(function(){
+        $("#tabs").tabs();
+        $(".Recurbox").show();
+        $('.input_fields_wrap').hide();
+        $("#copypaste").hide();
+        $("#error").hide();
+
+
+        $('#Recur').on('change',function(){
+            if( $(this).val() === "Yes"){
                 $(".Recurbox").show()
+            }
+            else{
+              $(".Recurbox").hide()
+            }
+        });
 
-                $('#Recur').on('change',function(){
-                    if( $(this).val() === "Yes"){
-                        $(".Recurbox").show()
-                    }
-                    else{
-                      $(".Recurbox").hide()
-                    }
-                });
+        var max_fields = 30; //maximum input boxes allowed
+        var wrapper = $(".input_fields_wrap"); //Fields wrapper
+        var add_button = $(".add_field_button"); //Add button ID
 
-                var max_fields = 30; //maximum input boxes allowed
-                var wrapper = $(".input_fields_wrap"); //Fields wrapper
-                var add_button = $(".add_field_button"); //Add button ID
+        var x = 1; //initial text box count
+        $(add_button).click(function(e){ //on add input button click
+            e.preventDefault();
+            if(x < max_fields){ //max input box allowed
+                x++; //text box increment
+                $(wrapper).append('<div><tr><td><input type="text" name="first[]" class="participants"></td><td><input type="text" name="last[]" class="participants"></td><td><input type="text" name="email[]" class="participants"></td><td></tr><a href="#" class="remove_field">Remove</a></div>');
+            }
+        });
 
-                var x = 1; //initlal text box count
-                $(add_button).click(function(e){ //on add input button click
-                    e.preventDefault();
-                    if(x < max_fields){ //max input box allowed
-                        x++; //text box increment
-                        $(wrapper).append('<div><tr><td><input type="text" name="first[]" class="participants"></td><td><input type="text" name="last[]" class="participants"></td><td><input type="text" name="email[]" class="participants"></td><td></tr><a href="#" class="remove_field">Remove</a></div>');
-                    }
-                });
+        $(wrapper).on("click", ".remove_field", function(e) { //user click on remove text
+            e.preventDefault();
+            $(this).parent('div').remove();
+            x--;
+        });
 
-                $(wrapper).on("click", ".remove_field", function(e) { //user click on remove text
-                    e.preventDefault();
-                    $(this).parent('div').remove();
-                    x--;
-                });
+        $("#search,#search2,#search3").keyup(function () {
+            var value = this.value.toLowerCase().trim();
 
-                $("#search,#search2,#search3").keyup(function () {
-                    var value = this.value.toLowerCase().trim();
-
-                    $("table tr").each(function (index) {
-                      if (!index) return;
-                      $(this).find("td").each(function () {
-                          var id = $(this).text().toLowerCase().trim();
-                          var not_found = (id.indexOf(value) == -1);
-                          $(this).closest('tr').toggle(!not_found);
-                          return not_found;
-                      });
-                    });
-                });
-
-                $('th').click(function(){
-                      var table = $(this).parents('table').eq(0)
-                      var rows = table.find('tr:gt(0)').toArray().sort(comparer($(this).index()))
-                      this.asc = !this.asc
-                      if (!this.asc){rows = rows.reverse()}
-                      for (var i = 0; i < rows.length; i++){table.append(rows[i])}
-                })
-                  function comparer(index) {
-                      return function(a, b) {
-                          var valA = getCellValue(a, index), valB = getCellValue(b, index)
-                          return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.localeCompare(valB)
-                      }
-                  }
-                  function getCellValue(row, index){ return $(row).children('td').eq(index).html() }
-
+            $("table tr").each(function (index) {
+              if (!index) return;
+              $(this).find("td").each(function () {
+                  var id = $(this).text().toLowerCase().trim();
+                  var not_found = (id.indexOf(value) == -1);
+                  $(this).closest('tr').toggle(!not_found);
+                  return not_found;
               });
+            });
+        });
 
-              tinymce.init({
-                  selector:'.richtext',
-                  browser_spellcheck: true,
-                  plugins: 'link advlist code spellchecker paste textcolor colorpicker visualchars wordcount contextmenu visualblocks insertdatetime hr searchreplace',
-                  advlist_bullet_styles: "default circle disc square",
-                  menubar: "edit view insert",
-                  toolbar: 'undo redo |  bold italic | bullist numlist | styleselect | alignleft aligncenter alignright | code | spellchecker | paste | forecolor backcolor | visualchars | link | visualblocks | insertdatetime | searchreplace | fontselect |  fontsizeselect',
-                  fontsize_formats: "8pt 10pt 12pt 14pt 18pt 24pt 36pt",
-               });
+        //participants jQuery
+        $('#participantgrid').click(function(){
+            $('.input_fields_wrap').toggle();
+        });
 
-    </script>
+        $('#copy').click(function(){
+            $('#copypaste').toggle();
+        });
+
+        $('th').click(function(){
+              var table = $(this).parents('table').eq(0)
+              var rows = table.find('tr:gt(0)').toArray().sort(comparer($(this).index()))
+              this.asc = !this.asc
+              if (!this.asc){rows = rows.reverse()}
+              for (var i = 0; i < rows.length; i++){table.append(rows[i])}
+        })
+          function comparer(index) {
+              return function(a, b) {
+                  var valA = getCellValue(a, index), valB = getCellValue(b, index)
+                  return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.localeCompare(valB)
+              }
+          }
+          function getCellValue(row, index){ return $(row).children('td').eq(index).html() }
+
+          //disables the posting button for a new meeting
+          setInterval(function () {
+              var objectives = tinyMCE.get('objectives').getContent();
+              var goals = tinyMCE.get('goals').getContent();
+              var agenda = tinyMCE.get('agenda').getContent();
+              var participants =  $("#participants").val();
+
+              if (participants != '' && participants.includes("<" && ">") !== true){
+                  var valid_participants = false;
+                  $("#error").show();
+              } else{
+                  var valid_participants = true;
+                  $("#error").hide();
+              }
+
+              if( ((objectives && goals && agenda) != '') && ((objectives && goals && agenda) != null) && (valid_participants == true)){
+                  $("#newmeeting").removeAttr("disabled");
+                  $("#newmeeting").val("Let's do this!");
+              } else {
+                  $("#newmeeting").attr("disabled", "disabled");
+                  $("#newmeeting").val("Please fill out all required fields");
+              }
+            }, 1000 ); //Runs every second
+
+        });
+
+            tinymce.init({
+              selector:'.richtext',
+              browser_spellcheck: true,
+              plugins: 'link advlist code spellchecker paste textcolor colorpicker visualchars wordcount contextmenu visualblocks insertdatetime hr searchreplace',
+              advlist_bullet_styles: "default circle disc square",
+              menubar: "edit view insert",
+              toolbar: 'undo redo |  bold italic | bullist numlist | styleselect | alignleft aligncenter alignright | code | spellchecker | paste | forecolor backcolor | visualchars | link | visualblocks | insertdatetime | searchreplace | fontselect |  fontsizeselect',
+              fontsize_formats: "8pt 10pt 12pt 14pt 18pt 24pt 36pt",
+            });
+        </script>
+
 </head>
 <!-- including header partial -->
 <?php include_once("header2.php"); ?>
@@ -116,6 +153,7 @@
                   <th data-sort="Meeting">Meeting <i class="fa fa-sort" aria-hidden="true"></i></th>
                   <th data-sort="Project">Project <i class="fa fa-sort" aria-hidden="true"></i></th>
                   <th data-sort="Date">Date <i class="fa fa-sort" aria-hidden="true"></i></th>
+                  <th data-sort="Time">Time <i class="fa fa-sort" aria-hidden="true"></i></th>
                   <th>Edit</th>
                   <th>Notes</th>
                   <th data-sort="Recurring?">Recur</th>
@@ -128,6 +166,7 @@
                   <td><a href="/admin/meetinginfo/<?= $ownmeeting['id']?>"><?= $ownmeeting['name']?></a></td>
                   <td><?= $ownmeeting['projectname']?></td>
                   <td><?= date('m/d/Y',strtotime($ownmeeting['date']))?></td>
+                  <td><?= date("g:i a", strtotime($ownmeeting['start']))?> - <?= date("g:i a", strtotime($ownmeeting['end']))?></td>
                   <td><a href="/admin/edit/<?= $ownmeeting['id']?>">Edit</td>
                   <td><a href="/admin/viewnotes/<?= $ownmeeting['id']?>">Notes</td>
                 <?php if($ownmeeting['recur'] !=="Yes"){ ?>
@@ -195,42 +234,45 @@
                     </select>
                 </div>
 
-                <label>Project Name:</label><input type="text" name="project"><br>
-                <label>Meeting Name:</label><input type="text" name="meeting"><br>
-                <label>Meeting Date:</label><input type="date" name="meetingdate"><br>
-                <label>Starting:</label><input type="time" name="start" step=900><br>
-                <label>Ending:</label><input type="time" name="end" step=900><br>
-                <label>Objectives:</label><textarea class="objectives richtext" name="objectives"></textarea><br>
-                <label>Goals:</label><br><textarea class="goals richtext" name="goals" ></textarea><br>
+                <label>Project Name:</label><input type="text" name="project" required><br>
+                <label>Meeting Name:</label><input type="text" name="meeting" required><br>
+                <label>Meeting Date:</label><input type="date" name="meetingdate" required><br>
+                <label>Starting:</label><input type="time" name="start" step=900 required><br>
+                <label>Ending:</label><input type="time" name="end" step=900 required><br>
+                <label>Objectives:(required)</label><textarea id="objectives" class="objectives richtext" name="objectives"></textarea><br>
+                <label>Goals:(required)</label><br><textarea id="goals" class="goals richtext" name="goals" ></textarea><br>
                 <label>Participants:</label><br>
-                <div class="input_fields_wrap">
-                    <button class="add_field_button btn btn-primary">Add New Participant</button>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th class="participantheader">First</th>
-                                <th class="participantheader">Last</th>
-                                <th class="participantheader">Email</th>
-                            <tr>
-                        </thead>
-                        <tbody>
-                            <div>
+                    <button type="button" id ="participantgrid" class="add_field_button btn btn-primary">Add New Participant</button> <button type="button" id="copy" class="btn btn-primary">OR Copy/Paste Participants from Gmail or Outlook</button>
+                    <div class="input_fields_wrap">
+                        <table>
+                            <thead>
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            </div>
-                        </tbody>
-                    </table>
-                </div>
-                <label>(OR Paste Participants from Gmail or Outlook Here):</label>
-                    <p><span class="attendeenotes"> NOTE: For gmail, place your cursor in the "To" line & press shift and the up arrow.</p></span>
-                    <p><span class="attendeenotes"> Then copy recipients using CTRL + C and paste into your meeting agenda.</p></span>
-                    <textarea name="participants"></textarea><br>
+                                    <th class="participantheader">First</th>
+                                    <th class="participantheader">Last</th>
+                                    <th class="participantheader">Email</th>
+                                <tr>
+                            </thead>
+                            <tbody>
+                                <div>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </div>
+                            </tbody>
+                        </table>
+                    </div>
 
-                <label>Agenda:</label><br> <textarea class="agenda richtext" name="agenda"></textarea><br>
-                <input type="submit" name="newmeeting" value="Let's do this"></input>
+                <div id="copypaste">
+                    <p><span class="attendeenotes"> NOTE: For Gmail, place your cursor in the "To" line & press shift and the up arrow.</p></span>
+                    <p><span class="attendeenotes"> Then copy recipients using CTRL + C and paste into your meeting agenda.</p></span>
+                    <div id="error">Hmm. Your participant info not in a familiar format. Please reformat using the copy/paste instructions above, or use the "Add New Particpants" button instead. </div>
+                    <textarea id="participants" name="participants"></textarea><br>
+                </div><br><br>
+
+                <label>Agenda:(required)</label><br><textarea id="agenda" class="agenda richtext" name="agenda"></textarea><br>
+                <input id="newmeeting" type="submit" disabled="disabled" name="newmeeting" value="Let's do this"></input>
               </form>
              </div>
          </div>
