@@ -21,7 +21,6 @@
         $("#copypaste").hide();
         $("#error").hide();
 
-
         $('#Recur').on('change',function(){
             if( $(this).val() === "Yes"){
                 $(".Recurbox").show()
@@ -29,6 +28,20 @@
             else{
               $(".Recurbox").hide()
             }
+        });
+
+        $('#Recur2').on('change',function(){
+            var recurmeeting = $(this).val();
+            $("#meetingname").attr("value", recurmeeting);
+            '<?php foreach($recurring as $recur) { ?>'
+                if (recurmeeting == '<?=$recur['name']?>'){
+                    $("#meetingname").attr("value", recurmeeting);
+                    $("#newprojectname").attr("value", '<?=$recur['projectname']?>');
+                    $("#meetingdate").attr("value", '<?php echo date('Y-m-d', strtotime($recur['date']))?>');
+                    $("#meetingstart").attr("value", '<?=$recur['start']?>');
+                    $("#meetingend").attr("value", '<?=$recur['end']?>');
+               }
+            '<?php } ?>'
         });
 
         var max_fields = 30; //maximum input boxes allowed
@@ -225,17 +238,17 @@
                     <select id="Recur2" name="Recur2">
                         <option value="">n/a</option><br>
                         <option value="New">New</option><br>
-                    <?php foreach($recurring as $recur) { ?>
+
+                    <?php foreach($recurring as $recur) {  ?>
                         <option value="<?=$recur['name']?>"><?=$recur['name']?></option><br>
                     <?php } ?>
                     </select>
                 </div>
-
-                <label>Project Name:</label><input type="text" name="project" required><br>
-                <label>Meeting Name:</label><input type="text" name="meeting" required><br>
-                <label>Meeting Date:</label><input type="date" name="meetingdate" required><br>
-                <label>Starting:</label><input type="time" name="start" step=900 required><br>
-                <label>Ending:</label><input type="time" name="end" step=900 required><br>
+                <label>Project Name:</label><input id="newprojectname" type="text" name="project" value="" required><br>
+                <label>Meeting Name:</label><input id="meetingname" type="text" name="meeting" value="" required><br>
+                <label>Meeting Date:</label><input id="meetingdate" type="date" name="meetingdate" value="" required><br>
+                <label>Starting:</label><input id="meetingstart" type="time" name="start" step=900 value="" required><br>
+                <label>Ending:</label><input id="meetingend" type="time" name="end" step=900 value="" required><br>
                 <label>Objectives:(required)</label><textarea id="objectives" class="objectives richtext" name="objectives"></textarea><br>
                 <label>Goals:(required)</label><br><textarea id="goals" class="goals richtext" name="goals" ></textarea><br>
                 <label>Participants:</label><br>

@@ -21,7 +21,19 @@ class main extends CI_Controller {
 		$dues=$followups['due'];
 		$statuses=$followups['status'];
 		$this->meetings->insertfollowups($owner,$followup,$dues,$statuses,$id);
-		redirect('/display/loaddashboard');
+		//reload the agenda with updated information
+		$agenda= $this->meetings->get_agenda($id);
+  		$attendees= $this->meetings->get_participants($id);
+ 		$followups= $this->meetings->get_followups($id);
+ 		$followups1= "This meeting does not have any followups";
+  		$data=array(
+  			'agenda'=>$agenda,
+ 			'attendees'=>$attendees,
+ 			'attendees'=>$attendees,
+ 			'followups1'=> $followups1,
+ 			'followups'=>$followups
+ 		);
+		$this->load->view('meeting',$data);
 	}
 
 //completes follow ups
@@ -153,7 +165,19 @@ class main extends CI_Controller {
 		}else{
 			$this->meetings->updatenotes($id,$notes);
 		}
-		redirect('/display/loaddashboard');
+		//reload the agenda with updated information
+		$agenda= $this->meetings->get_agenda($id);
+  		$attendees= $this->meetings->get_participants($id);
+ 		$followups= $this->meetings->get_followups($id);
+ 		$followups1= "This meeting does not have any followups";
+  		$data=array(
+  			'agenda'=>$agenda,
+ 			'attendees'=>$attendees,
+ 			'attendees'=>$attendees,
+ 			'followups1'=> $followups1,
+ 			'followups'=>$followups
+ 		);
+		$this->load->view('meeting',$data);
 	}
 
 }
