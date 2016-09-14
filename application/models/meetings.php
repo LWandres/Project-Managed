@@ -115,13 +115,15 @@ class meetings extends CI_Model {
 		}
 	}
 	public function get_followups($id){
-		return $this->db->query("SELECT * from followups LEFT JOIN users on owner = users.id WHERE meetings_id=$id")->result_array();
+		return $this->db->query("SELECT users.first, users.last,followups.owner,followups.followup,followups.duedate,followups.status AS followstatus, followups.meetings_id from followups LEFT JOIN users on owner = users.id WHERE meetings_id = $id")->result_array();
 	}
+
 	public function get_emailfollowups($id){
-		return $this->db->query("SELECT * from followups LEFT JOIN meetings on meetings_id = meetings.id
+		return $this->db->query("SELECT followups.id,owner,followup,duedate, meetings_id,followups.status AS followstatus from followups
 								LEFT JOIN users on followups.owner = users.id
-								WHERE meetings_id = ?",$id)->result_array();
-				}
+								WHERE followups.meetings_id=?",$id)->result_array();
+	}
+
 	public function completefollow($id){
 		return $this->db->query("UPDATE followups SET status='Yes' WHERE followups.id=?",$id);
 	}

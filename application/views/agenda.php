@@ -24,7 +24,7 @@
               e.preventDefault();
               if(x < max_fields){ //max input box allowed
                   x++; //text box increment
-                  $(wrapper).append('<div><tr><td><select name="owner[]"><?php foreach($attendees as $attendee){ ?><option value="<?=$attendee['id']?>"><?= $attendee['first']." ".$attendee['last']?></option></td>"<?php }?>"<td><input type="text" name="follow[]"></td><td><input type="date" name="due[]"></td><td><select name="status[]"><option value="Yes">Yes</option><option value="No">No</option></select></td><td></tr><a href="#" class="remove_field">Remove</a></div>');
+                  $(wrapper).append('<div><tr><td><select name="owner[]"><?php foreach($attendees as $attendee){ ?><option value="<?=$attendee['id']?>"><?= $attendee['first']." ".$attendee['last']?></option></td>"<?php }?>"<td><input type="text" name="follow[]"></td><td><input type="date" name="due[]"></td><td><select name="status[]"><option value="No">No</option><option value="Yes">Yes</option></select></td><td></tr><a href="#" class="remove_field">Remove</a></div>');
               }
           });
 
@@ -116,7 +116,7 @@
                                              <td><?=$follow['first']?> <?=$follow['last']?></td>
                                              <td><?=$follow['followup']?></td>
                                              <td><?= date('F d, Y',strtotime($follow['duedate']))?></td>
-                                             <td><?=$follow['status']?></td>
+                                             <td><?=$follow['followstatus']?></td>
                                            </tr>
                                          <?php }
                                    }?>

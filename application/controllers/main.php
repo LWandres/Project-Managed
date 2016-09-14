@@ -15,17 +15,17 @@ class main extends CI_Controller {
 
 //updates follow ups
 	public function updatefollows($id){
-		$followups= $this->input->post();
-		$owner= $followups['owner'];
-		$followup=$followups['follow'];
-		$dues=$followups['due'];
-		$statuses=$followups['status'];
+		$followups = $this->input->post();
+		$owner = $followups['owner'];
+		$followup = $followups['follow'];
+		$dues = $followups['due'];
+		$statuses = $followups['status'];
 		$this->meetings->insertfollowups($owner,$followup,$dues,$statuses,$id);
 		//reload the agenda with updated information
-		$agenda= $this->meetings->get_agenda($id);
-  		$attendees= $this->meetings->get_participants($id);
- 		$followups= $this->meetings->get_followups($id);
- 		$followups1= "This meeting does not have any followups";
+		$agenda = $this->meetings->get_agenda($id);
+  		$attendees = $this->meetings->get_participants($id);
+ 		$followups = $this->meetings->get_followups($id);
+ 		$followups1 = "This meeting does not have any followups";
   		$data=array(
   			'agenda'=>$agenda,
  			'attendees'=>$attendees,

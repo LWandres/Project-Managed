@@ -26,10 +26,10 @@ class admin extends CI_Controller {
 
 	//get single meeting information
 	public function meetinginfo($id){
-		$agenda= $this->meetings->get_agenda($id);
-		$attendees= $this->meetings->get_participants($id);
-		$followups= $this->meetings->get_followups($id);
-		$followups1= "This meeting does not have any followups";
+		$agenda = $this->meetings->get_agenda($id);
+		$attendees = $this->meetings->get_participants($id);
+		$followups = $this->meetings->get_followups($id);
+		$followups1 = "This meeting does not have any followups";
 		$data=array(
 			'agenda'=>$agenda,
 			'attendees'=>$attendees,
@@ -67,11 +67,11 @@ class admin extends CI_Controller {
 
 	//View notes hyperlink on dashboard
 	public function viewnotesemail($id){
-		$notes= $this->meetings->get_agenda($id);
-		$attendees= $this->meetings->get_participants($id);
-		$followups= $this->meetings->get_followups($id);
-		$followups1= "This meeting does not have any followups";
-		$data=array(
+		$notes = $this->meetings->get_agenda($id);
+		$attendees = $this->meetings->get_participants($id);
+		$followups = $this->meetings->get_followups($id);
+		$followups1 = "This meeting does not have any followups";
+		$data = array(
 			'agenda'=>$notes,
 			'attendees'=>$attendees,
 			'followups1'=> $followups1,

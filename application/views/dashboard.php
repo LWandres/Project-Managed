@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400" rel="stylesheet">
 
     <!-- JS -->
     <script type="text/javascript" src="/assets/js/jquery-3.1.0.min.js"></script>
@@ -156,7 +157,6 @@
 
           <div id="tabs-1">
             <input class="searchinput" type="text" id="search" type="text" placeholder="Search here">
-
             <h3>Active Meetings You Own</h3>
             <table class="table table-hover">
                 <thead>
@@ -173,7 +173,7 @@
                 <tbody>
               <?php  foreach($activeowned as $ownmeeting){?>
                 <tr>
-                  <td><a href="/admin/meetinginfo/<?= $ownmeeting['id']?>"><?= $ownmeeting['name']?></a></td>
+                  <td><a href="/admin/meetinginfo/<?= $ownmeeting['meetings_id']?>"><?= $ownmeeting['name']?></a></td>
                   <td><?= $ownmeeting['projectname']?></td>
                   <td><?= date('m/d/Y',strtotime($ownmeeting['date']))?></td>
                   <td><?= date("g:i a", strtotime($ownmeeting['start']))?> - <?= date("g:i a", strtotime($ownmeeting['end']))?></td>
@@ -182,10 +182,10 @@
                 <?php if($ownmeeting['recur'] !=="Yes"){ ?>
                   <td><?= $ownmeeting['recur']?></td>
                 <?php } else{ ?>
-                  <td><a href="/main/recurring/<?= $ownmeeting['id']?>"><?= $ownmeeting['recur']?></td>
+                  <td><a href="/main/recurring/<?= $ownmeeting['meetings_id']?>"><?= $ownmeeting['recur']?></td>
                 <?php } ?>
-                  <td><a href="/admin/archive/<?= $ownmeeting['id']?>"><button class="btn btn-primary">Archive</button></a></td>
-                  <td><a href="/apis/emailfollowup/<?= $ownmeeting['id']?>"><button class="btn btn-primary">Email</button></a></td>
+                  <td><a href="/admin/archive/<?= $ownmeeting['meetings_id']?>"><button class="btn btn-primary">Archive</button></a></td>
+                  <td><a href="/apis/emailfollowup/<?= $ownmeeting['meetings_id']?>"><button class="btn btn-primary">Email</button></a></td>
                 </tr>
               <?php } ?>
                 </tbody>
@@ -209,7 +209,7 @@
                         <tbody>
                     <?php foreach($activeattend as $attend){ ?>
                         <tr>
-                          <td><a href="/admin/meetinginfo"><?= $attend['name']?></td>
+                          <td><a href="/admin/meetinginfo/<?=$attend['id']?>"><?= $attend['name']?></td>
                           <td><?= $attend['projectname']?></td>
                           <td><?= date('m/d/Y',strtotime($attend['date']))?></td>
                           <td><a href="/admin/edit/<?= $attend['id']?>">Edit Meeting</td>

@@ -11,7 +11,8 @@
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
 		<link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
-	  	<script src="https://use.fontawesome.com/08a48debfa.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=Raleway:300,400" rel="stylesheet">
+		<script src="https://use.fontawesome.com/08a48debfa.js"></script>
 
 		<script>
 			$(document).ready(function(){
