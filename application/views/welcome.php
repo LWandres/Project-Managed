@@ -2,7 +2,7 @@
 <!-- End header partial -->
 <link href="https://fonts.googleapis.com/css?family=Raleway:300,400" rel="stylesheet">
 <div class="image">
-	<img src="assets/images/PMdesk.jpg" alt="bannerphoto" width="105%">
+	<img id="bannerphoto" src="assets/images/PMdesk.jpg" alt="bannerphoto.jpg">
 	<a id="start" href="/login" class="btn btn-info">GET STARTED</a>
 </div>
 
@@ -18,7 +18,7 @@
 			We're here to help you automate busy work<br>so you can focus on the important things.</p>
 		<p>Regain control of your meetings.
 		<br> Check us out- 100% free.</p>
-		<a id="startview"href="/login" class="btn btn-info">LOGIN</a>
+		<a id="startview" href="/login" class="btn btn-info">LOGIN</a>
 
 	</div>
 	<div id="takeback" class="box-left col-md-6">

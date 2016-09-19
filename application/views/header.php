@@ -54,9 +54,9 @@
 
 				 <div id="resp-menu" class="responsive-menu">
 						<ul>
-							<li><a href="/">HOME</a></li><br>
-							<li><a href="/login">LOGIN</a></li><br>
-							<li><a href="#">CONTACT</a></li><br>
+							<li><a href="/">HOME</a></li>
+							<li><a href="/login">LOGIN</a></li>
+							<li><a href="#">CONTACT</a></li>
 						</ul>
 				 </div>
 			</div>
