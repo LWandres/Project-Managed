@@ -1,10 +1,9 @@
-<!-- header partial -->
 <?php include_once("header.php"); ?>
 <!-- End header partial -->
 <link href="https://fonts.googleapis.com/css?family=Raleway:300,400" rel="stylesheet">
 <div class="image">
-	<img src="assets/images/PMdesk.jpg" alt="bannerphoto" width="105.3%">
-	<a href="/login"><button id="start" class="btn btn-info">GET STARTED</button></a>
+	<img src="assets/images/PMdesk.jpg" alt="bannerphoto" width="105%">
+	<a id="start" href="/login" class="btn btn-info">GET STARTED</a>
 </div>
 
 <div id="top">
@@ -19,7 +18,7 @@
 			We're here to help you automate busy work<br>so you can focus on the important things.</p>
 		<p>Regain control of your meetings.
 		<br> Check us out- 100% free.</p>
-		<a href="/login"><button id="startview" class="btn btn-info">LOGIN</button></a>
+		<a id="startview"href="/login" class="btn btn-info">LOGIN</a>
 
 	</div>
 	<div id="takeback" class="box-left col-md-6">

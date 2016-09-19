@@ -33,7 +33,7 @@
 					<ul class="rightheader">
 						<li><a href="/access/logout">Logout</a></li>
 						<li><a href="/access/profile/<?=$session_id?>">Edit Profile</a></li>
-						<li><a href="/"><i class="fa fa-home"></i></i></a></li>
+						<li><a href="/"><i class="fa fa-home"></i></a></li>
 					</ul>
 			</div>
 
@@ -52,7 +52,7 @@
 						<ul>
 							<li><a href="/access/logout">Logout</a></li>
 							<li><a href="/access/profile/<?=$session_id?>">Edit Profile</a></li>
-							<li><a href="/"><i class="fa fa-home"></i></i></a></li>
+							<li><a href="/"><i class="fa fa-home"></i><a></li>
 						</ul>
 				 </div>
 			</div>

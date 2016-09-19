@@ -54,7 +54,7 @@
 }
 h1 {
     width: 40%;
-    font-size: 2.5em !important;
+    font-size: 2.2em !important;
     display: inline-block;
     margin-left: 5%;
     margin-top: 2% !important;
@@ -146,6 +146,7 @@ body {
     width:25%;
     bottom:23%;
     left:58%;
+    padding-top:2%;
     color:#FFF;
     font-size:2em;
     border-radius: 5px;
