@@ -8,7 +8,7 @@
 
 <div id="top">
 	<div class="box-left col-md-6">
-		<i class="fa fa-plane" aria-hidden="true"></i>
+		<img id="plane" src="/assets/images/Plane.png" alt="plane.png">
 		<h3>30,000 Foot View</h3>
 	</div>
 	<div id="gist" class="box-right col-md-6">

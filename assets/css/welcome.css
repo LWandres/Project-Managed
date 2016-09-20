@@ -208,7 +208,6 @@ body {
     color:rgba(67,67,82,1);
 }
 
-
 h3 {
     font-size: 1.5em !important;
     color: white;
@@ -395,7 +394,9 @@ figure.effect-chico:hover figcaption::before, figure.effect-chico:hover p {
         width: 100%;
         height: 300px !important;
     }
-
+    #plane{
+        width:20%;
+    }
     #takeback h1{
         font-size: 1.8em !important;
     }

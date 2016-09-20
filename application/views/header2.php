@@ -11,8 +11,6 @@
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
 		<link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
-		<link href="https://fonts.googleapis.com/css?family=Raleway:300,400" rel="stylesheet">
-		<script src="https://use.fontawesome.com/08a48debfa.js"></script>
 
 		<script>
 			$(document).ready(function(){
@@ -33,7 +31,7 @@
 					<ul class="rightheader">
 						<li><a href="/access/logout">Logout</a></li>
 						<li><a href="/access/profile/<?=$session_id?>">Edit Profile</a></li>
-						<li><a href="/"><i class="fa fa-home"></i></a></li>
+						<li><a href="/"><img src="/assets/images/home.png" alt="home.png"></a></li>
 					</ul>
 			</div>
 
@@ -52,7 +50,7 @@
 						<ul>
 							<li><a href="/access/logout">Logout</a></li>
 							<li><a href="/access/profile/<?=$session_id?>">Edit Profile</a></li>
-							<li><a href="/"><i class="fa fa-home"></i><a></li>
+							<li><a href="/"><i class="fa fa-home"></i></i></a></li>
 						</ul>
 				 </div>
 			</div>
