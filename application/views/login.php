@@ -14,9 +14,10 @@
         <div id="main">
         <div class="row forms">
           <div class='col-md-6'>
-
             <form action="/access/login" method="post" class="form-horizontal" role="form">
               <h2>Log In</h2>
+              <h4> Already have an account? Log in below!</h4>
+
                 <label class="control-label col-sm-2" for="email">Email:</label>
                 <div class="col-sm-10">
                   <input  type="text" name="email" class="form-control" id="email" placeholder="email">
@@ -47,8 +48,10 @@
     </div>
     <div class='col-md-5 col-md-offset-1 '>
       <div id="registration">
+
         <form action="/access/register" method="post" class="form-horizontal" role="form">
           <h2>Register</h2>
+          <h4> Create an account to get started!</h4>
           <div class="form-group">
             <label class="control-label col-sm-6" for="name">First Name:</label>
             <div class="col-sm-10">

@@ -9,9 +9,9 @@
     padding-bottom: 5%;
 }
 #dashboard-container {
-    width: 1000px;
+    width: 1050px;
     margin: 0px auto;
-    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-family: "Raleway", sans-serif;;
 }
 #container {
     padding-left: 5% !important;
@@ -69,6 +69,8 @@
 }
 .searchinput {
     float: right;
+    width:50%;
+    padding:1%;
 }
 #header> h1 {
     margin-left: 30px;
@@ -181,6 +183,12 @@ h3 {
 
     .attendeenotes{
         font-size:.9em;
+    }
+    .format{
+        float:right;
+    }
+    .new_meet_float{
+        width:50%;
     }
 /*Rich Text editor*/
 

@@ -7,9 +7,9 @@
     <title>Dashboard</title>
     <!-- Stylesheets -->
     <link rel="stylesheet" type="text/css" href="/assets/css/dashboard.css">
+    <link rel="stylesheet" href="/assets/css/jquery-ui.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400" rel="stylesheet">
 
     <!-- JS -->
@@ -39,7 +39,7 @@
 
           <!-- Active Meetings tab -->
           <div id="tabs-1">
-            <input class="searchinput" type="text" id="search" type="text" placeholder="Search here">
+            <input class="searchinput" type="text" id="search" type="text" placeholder="search for meetings here">
             <h3>Active Meetings You Own</h3>
             <table class="table table-hover">
                 <thead>
@@ -110,13 +110,14 @@
           <div id="tabs-2">
             <h3>New Meeting Workspace</h3>
             <div id="new_meeting_form">
+
               <form action="/main/new_meeting" method="post">
                 <input type="hidden" name="owner" value="<?=$userid?>"></input>
                 <label>Recurring?:</label>
                 <select name="Recur" id="Recur">
                   <option value="No">No</option><br>
                   <option value="Yes">Yes</option><br>
-                </select><br>
+                </select>
 
                 <div class="Recurbox">
                   <label>Your Recurrings:</label>
@@ -129,11 +130,14 @@
                     <?php } ?>
                     </select>
                 </div>
-                <label>Project Name:</label><input id="newprojectname" type="text" name="project" value="" required><br>
-                <label>Meeting Name:</label><input id="meetingname" type="text" name="meeting" value="" required><br>
-                <label>Meeting Date:</label><input id="meetingdate" type="date" name="meetingdate" value="" required><br>
-                <label>Starting:</label><input id="meetingstart" type="time" name="start" step=900 value="" required><br>
-                <label>Ending:</label><input id="meetingend" type="time" name="end" step=900 value="" required><br>
+
+                <div class="new_meet_float">
+                    <label>Project Name:</label><input id="newprojectname" type="text" class="format" name="project" value="" required><br>
+                    <label>Meeting Name:</label><input id="meetingname" type="text" class="format"  name="meeting" value="" required><br>
+                    <label>Meeting Date:</label><input id="meetingdate" type="date" class="format"  name="meetingdate" value="" required><br>
+                    <label>Starting Time:</label><input id="meetingstart" type="time"  class="format"  name="start" step=900 value="" required><br>
+                    <label>Ending Time:</label><input id="meetingend" type="time" class="format"  name="end" step=900 value="" required><br>
+                </div>
                 <label>Objectives:(required)</label><textarea id="objectives" class="objectives richtext" name="objectives"></textarea><br>
                 <label>Goals:(required)</label><br><textarea id="goals" class="goals richtext" name="goals" ></textarea><br>
                 <label>Participants:</label><br>
@@ -175,8 +179,7 @@
 
          <!-- Archive tab -->
           <div id="tabs-3">
-              <input class="searchinput" type="text" id="search2" type="text" placeholder="Search here">
-
+              <input class="searchinput" type="text" id="search2" type="text" placeholder="search for meetings here">
                 <h3>Archived Meetings</h3>
                 <table class="table table-hover">
                 <thead>
@@ -212,7 +215,7 @@
 
           <!-- Follow Ups tab -->
           <div id="tabs-4">
-              <input class="searchinput" type="text" id="search3" type="text" placeholder="Search here"></input>
+              <input class="searchinput" type="text" id="search3" type="text" placeholder="search for meetings here"></input>
                 <h3>Upcoming Follow Ups</h3>
                 <p>These are your outstanding follow ups</p>
                   <table class="table table-hover">
