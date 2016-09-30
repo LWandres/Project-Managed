@@ -1,7 +1,7 @@
 # Project-Managed
 
 Inspired by years as an IT project manager, I conceptualized and created a web-application that helps users automate tedious project management tasks.
-The main goal: Simplfy PM processes, and allow PMs to use their time focused on overarching project goals, instead of stuck in email.
+The main goal: Simplify PM processes, and allow PMs to use their time focused on overarching project goals, instead of stuck in email.
 
 Technologies Used: PHP, SQL, PHPmailer (SMTP), PDF API, Rich-Text Editor, jQuery, BootStrap, HTML/CSS
 <img src="/assets/images/PMManaged.png" alt="PMManaged.png"><br>
