@@ -11,6 +11,7 @@ class users extends CI_Model {
 	}
 
 	public function register($post){
+		//registration validations
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('<p class="error">', '</p>');
 		$this->form_validation->set_rules('firstname', 'First Name', 'trim|required');
@@ -34,6 +35,7 @@ class users extends CI_Model {
 	    }
   	}
 
+	//check if user login is valid
 	public function login($post){
 		$check_user = "SELECT * FROM users WHERE users.email = ?";
 		$user = $this->db->query($check_user, array($post['email']))->row_array();
@@ -55,28 +57,33 @@ class users extends CI_Model {
 	public function check_email_exists($email){
 		return $this->db->query("SELECT * from users WHERE email=?",$email)->row_array();
 	}
+
 	public function get_newuser_id(){
 		return $this->db->query("SELECT MAX(id) FROM users")->row_array();
 	}
 
+	//updates user profile info
 	public function updateprofile($id,$newprofile){
 		$query = "UPDATE users SET first = ?,last =?,email =?,orgname=? WHERE users.id=?";
 		$values = array($newprofile['first'],$newprofile['last'],$newprofile['email'],$newprofile['orgname'],$id);
 		return $this->db->query($query,$values);
 	}
 
+	//adds a new user to DB
 	public function create_new_participant($first,$last,$email){
 		$query = "INSERT INTO users (first,last,email,status,created_at,updated_at) VALUES (?,?,?,?,NOW(),NOW())";
 		$values = array($first,$last,$email,'Pending');
 		return $this->db->query($query,$values);
 	}
 
+	//adds/removes users from a particular meeting
 	public function update_meeting_users($exists,$id){
 		$query = "INSERT INTO users_has_meetings(users_id,meetings_id) VALUES(?,?)";
-		$values= array($exists,$id);
+		$values = array($exists,$id);
 		return $this->db->query($query,$values);
 	}
 
+	//gets user emails for SMTP integration
 	public function sendemails($id){
 		return $this->db->query("SELECT email FROM users_has_meetings LEFT JOIN users on users.id=users_has_meetings.users_id
 								Where users_has_meetings.meetings_id=?",$id)->result_array();

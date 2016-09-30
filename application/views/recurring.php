@@ -1,38 +1,15 @@
-<html>
 <head>
     <title>Dashboard</title>
     <!-- Stylesheets -->
     <link rel="stylesheet" type="text/css" href="/assets/css/meetingagenda.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/dashboard.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-
-    <!-- JS -->
-    <script type="text/javascript" src="/assets/js/jquery-3.1.0.min.js"></script>
-    <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-
-    <script>
-        $(document).ready(function() {
-            $("#tabs").tabs();
-            $('#Recur').on('change', function() {
-                if ($(this).val() === "Yes") {
-                    $("#Recur2").show()
-                } else {
-                    $("#Recur2").hide()
-                }
-            });
-        });
-    </script>
 </head>
-<!-- including header partial -->
-<?php include_once("header2.php"); ?>
-<!-- end header partial -->
-</div><!-- closes container from header -->
 
-  <body>
-      <div id="background">
+<?php include_once("header2.php"); ?>
+
+</div><!-- closes container from header -->
+    <div id="background">
       <div id="dashboard-container">
             <h2>Welcome Back <?=$userinfo?></h2>
             <div id="tabs">
@@ -69,12 +46,24 @@
                             <?php } ?>
                         </tbody>
                     </table>
-                </div>
-
-
-             </div>
-        </div>
-      </div>
+                </div><!--end recurring tabs div-->
+            </div><!--end overall tabs div future implementation-->
+        </div><!--end dashboard container-->
+    </div><!--end background div-->
+      <!-- JS -->
+      <script async type="text/javascript" src="/assets/js/jquery-ui.min.js"></script>
+      <script async type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
+      <script>
+          $(document).ready(function() {
+              $("#tabs").tabs();
+              $('#Recur').on('change', function() {
+                  if ($(this).val() === "Yes") {
+                      $("#Recur2").show()
+                  } else {
+                      $("#Recur2").hide()
+                  }
+              });
+          });
+      </script>
 </body>
-
 </html>

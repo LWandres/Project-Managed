@@ -1,34 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    <title>Dashboard</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta charset="UTF-8">
     <title>Dashboard</title>
     <!-- Stylesheets -->
     <link rel="stylesheet" type="text/css" href="/assets/css/dashboard.css">
-    <link rel="stylesheet" href="/assets/css/jquery-ui.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400" rel="stylesheet">
-
-    <!-- JS -->
-    <script src="/assets/js/jquery-2.2.4.min.js"></script>
-    <script src="/assets/js/jquery-3.1.0.min.js"></script>
-    <script src="/assets/js/jquery-ui.min.js"></script>
-    <script src="/assets/js/bootstrap.min.js"></script>
-    <script src="https://cdn.tinymce.com/4/tinymce.min.js"></script>
-    <script src="/assets/js/dashboard.js"></script>
-
 </head>
 <!-- including header partial -->
 <?php include_once("header2.php"); ?>
-<!-- end header partial -->
 </div><!-- closes container from header -->
-  <body>
     <div id="background">
       <div id="dashboard-container">
         <h2>Welcome Back <?=$userinfo?></h2>
+
+        <!--starts jquery tabs-->
         <div id="tabs">
           <ul>
             <li><a href="#tabs-1">Active Meetings</a></li>
@@ -110,21 +92,19 @@
           <div id="tabs-2">
             <h3>New Meeting Workspace</h3>
             <div id="new_meeting_form">
-
               <form action="/main/new_meeting" method="post">
                 <input type="hidden" name="owner" value="<?=$userid?>"></input>
                 <label>Recurring?:</label>
-                <select name="Recur" id="Recur">
-                  <option value="No">No</option><br>
-                  <option value="Yes">Yes</option><br>
-                </select>
+                    <select name="Recur" id="Recur">
+                      <option value="No">No</option><br>
+                      <option value="Yes">Yes</option><br>
+                    </select>
 
                 <div class="Recurbox">
                   <label>Your Recurrings:</label>
                     <select id="Recur2" name="Recur2">
                         <option value="">n/a</option><br>
                         <option value="New">New</option><br>
-
                     <?php foreach($recurring as $recur) {  ?>
                         <option value="<?=$recur['name']?>"><?=$recur['name']?></option><br>
                     <?php } ?>
@@ -151,7 +131,7 @@
                                     <th class="participantheader">Email</th>
                                 <tr>
                             </thead>
-                            <tbody>
+                            <tbody><!--blank participant fields to start-->
                                 <div>
                                     <tr>
                                         <td></td>
@@ -161,7 +141,7 @@
                                 </div>
                             </tbody>
                         </table>
-                    </div>
+                    </div> <!--end participant wrapper-->
 
                 <div id="copypaste">
                     <p><span class="attendeenotes"> NOTE: For Gmail, place your cursor in the "To" line & press shift and the up arrow.</p></span>
@@ -173,15 +153,15 @@
                 <label>Agenda:(required)</label><br><textarea id="agenda" class="agenda richtext" name="agenda"></textarea><br>
                 <input id="newmeeting" type="submit" disabled="disabled" name="newmeeting" value="Let's do this"></input>
               </form>
-             </div>
-         </div>
-         <!-- End New Meetings tab -->
+
+          </div><!-- End New Meeting form div -->
+         </div> <!-- End New Meetings tab -->
 
          <!-- Archive tab -->
-          <div id="tabs-3">
-              <input class="searchinput" type="text" id="search2" type="text" placeholder="search for meetings here">
-                <h3>Archived Meetings</h3>
-                <table class="table table-hover">
+         <div id="tabs-3">
+             <input class="searchinput" type="text" id="search2" type="text" placeholder="search for meetings here">
+             <h3>Archived Meetings</h3>
+             <table class="table table-hover">
                 <thead>
                   <th data-sort="Meeting">Meeting <i class="fa fa-sort" aria-hidden="true"></i></th>
                   <th data-sort="Project">Project <i class="fa fa-sort" aria-hidden="true"></i></th>
@@ -201,7 +181,7 @@
                           <td><?=$archive['recur']?></td>
                           <td><a href="/admin/active/<?=$archive['meetings_id']?>">Move</td>
                         </tr>
-                    <?php  } ?>
+                  <?php  } ?>
                 <?php  } ?>
                 <?php if($archived == null){?>
                           </tbody>
@@ -209,27 +189,25 @@
                           <?php echo "You do not have any meetings archived.";
                       }?>
                   </tbody>
-                  </table>
-          </div>
-          <!-- Archives tab ends-->
+              </table>
+          </div><!-- Archive tab ends-->
 
           <!-- Follow Ups tab -->
           <div id="tabs-4">
-              <input class="searchinput" type="text" id="search3" type="text" placeholder="search for meetings here"></input>
+              <input class="searchinput" type="text" id="search3" type="text" placeholder="search for follow ups here"></input>
                 <h3>Upcoming Follow Ups</h3>
                 <p>These are your outstanding follow ups</p>
                   <table class="table table-hover">
                     <thead>
-                      <th data-sort="Meeting">Project <i class="fa fa-sort" aria-hidden="true"></i></th>
-                      <th data-sort="Meeting">Meeting <i class="fa fa-sort" aria-hidden="true"></i></th>
-                      <th data-sort="Meeting">Follow Up <i class="fa fa-sort" aria-hidden="true"></i></th>
-                      <th data-sort="Meeting">Due Date <i class="fa fa-sort" aria-hidden="true"></i></th>
-                      <th>Source Notes</th>
-                      <th>Complete?</th>
+                        <th data-sort="Meeting">Project <i class="fa fa-sort" aria-hidden="true"></i></th>
+                        <th data-sort="Meeting">Meeting <i class="fa fa-sort" aria-hidden="true"></i></th>
+                        <th data-sort="Meeting">Follow Up <i class="fa fa-sort" aria-hidden="true"></i></th>
+                        <th data-sort="Meeting">Due Date <i class="fa fa-sort" aria-hidden="true"></i></th>
+                        <th>Source Notes</th>
+                        <th>Complete?</th>
                     </thead>
                     <tbody>
-
-                  <?php   foreach($userfollowups as $incomplete){ ?>
+                    <?php foreach($userfollowups as $incomplete){ ?>
                       <tr>
                         <td><a href="/admin/meetinginfo/<?=$incomplete['id']?>"><?=$incomplete['projectname']?></td>
                         <td><a href="/main/viewagenda/<?=$incomplete['id']?>"><?=$incomplete['name']?></td>
@@ -241,8 +219,8 @@
                             </form>
                         </td>
                       </tr>
-                      <?php } ?>
-                    </tbody>
+                     <?php } ?>
+                    </tbody><!--ends follow ups tbody-->
                   </table>
                   <hr>
 
@@ -258,7 +236,7 @@
                         <th>Completed</th>
                       </thead>
                       <tbody>
-                          <?php   foreach($completefollows as $complete){ ?>
+                          <?php foreach($completefollows as $complete){ ?>
                             <tr>
                               <td><a href="/admin/meetinginfo/<?=$complete['id']?>"><?=$complete['projectname']?></td>
                               <td><a href="/main/viewagenda/<?=$complete['id']?>"><?=$complete['name']?></td>
@@ -271,13 +249,17 @@
                                   </form>
                               </td>
                             </tr>
-                            <?php } ?>
-                    </tbody>
+                          <?php } ?>
+                      </tbody>
                 </table>
-          </div>
-        <!-- Follow Ups Tab ends-->
-        </div> <!--closes tabs-->
+          </div><!-- closes follow ups tab-->
+      </div> <!--closes jquery tabs-->
     </div> <!--closes dashboard container-->
+    <!-- JS -->
+    <script src="/assets/js/tinymce/tinymce.minified.js"></script>
+    <script src="/assets/js/jquery-ui.min.js"></script>
+    <script async src="/assets/js/bootstrap.min.js"></script>
+    <script async src="/assets/js/dashboard.js"></script>
   </body>
 </div> <!--closes background-->
 </html>

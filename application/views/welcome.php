@@ -1,6 +1,5 @@
 <?php include_once("header.php"); ?>
 <!-- End header partial -->
-<link href="https://fonts.googleapis.com/css?family=Raleway:300,400" rel="stylesheet">
 <div class="image">
 	<img id="bannerphoto" src="assets/images/PMdesk.jpg" alt="bannerphoto.jpg">
 	<a id="start" href="/login" class="btn btn-info">GET STARTED</a>
@@ -11,6 +10,7 @@
 		<img id="plane" src="/assets/images/Plane.png" alt="plane.png">
 		<h3>30,000 Foot View</h3>
 	</div>
+
 	<div id="gist" class="box-right col-md-6">
 	<p>Being a project manager is no easy feat. <br>
 	   From back-to-back meetings, perpetual follow ups, and putting out fires, life can get hectic.
@@ -19,11 +19,12 @@
 		<p>Regain control of your meetings.
 		<br> Check us out- 100% free.</p>
 		<a id="startview" href="/login" class="btn btn-info">LOGIN</a>
-
 	</div>
+
 	<div id="takeback" class="box-left col-md-6">
 		<h1>take<br>control<br>back over<br>your workday,<br>your time, your life.<br></h1>
 	</div>
+
 	<div id="pictures" class="box-right col-md-6">
 		<div class="grid">
 			<figure class="effect-chico">
@@ -58,10 +59,10 @@
 					<a href="#">View more</a>
 				</figcaption>
 			</figure>
-		</div>
-	</div>
-</div>
+		</div><!-- ends grid div-->
+	</div><!-- ends pictures div-->
+</div><!-- ends top div-->
 
-</div>
+</div><!-- ends container div from header-->
 </body>
 </html>

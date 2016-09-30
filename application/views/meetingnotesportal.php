@@ -1,18 +1,82 @@
-<html>
 <head>
     <title>Meeting Agenda</title>
-
     <!-- Stylesheets -->
     <link rel="stylesheet" type="text/css" href="/assets/css/meetingagenda.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/dashboard.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/assets/css/bootstrap-theme.min.css">
+</head>
+
+<!-- including header partial -->
+<?php include_once("header.php"); ?>
+</div><!--intentional div-->
+    <div id="background">
+        <div class="emailportal">
+            <form method="post" action="/apis/createPDF/<?=$agenda['id']?>">
+                <input type="submit" name="PDF" value="Create PDF"></input>
+            </form><br>
+        </div>
+
+        <div id="notes-container">
+            <div id="agenda">
+                <h2 id="meetingname">  <?=$agenda['name']?></h2>
+                <ul id="date">
+                    <li><?=date('l F d Y',strtotime($agenda['date']))?></li>
+                    <li><?= date("g:i a", strtotime($agenda['start']))?> - <?= date("g:i a", strtotime($agenda['end']))?></li>
+                </ul>
+
+                <h4>Objectives</h4>
+                <div class="objectives"><?=$agenda['objective']?></div>
+
+                <h4>Goals</h4><div class="goals"><?=$agenda['goals']?></div>
+
+                <h4>Attendees</h4>
+                <div class="attendees">
+                    <form class="attendees" method="post" action="/main/attendance/<?=$attendees[0]['meetings_id']?>">
+                        <?php foreach($attendees as $attendee){?>
+                        <input type="checkbox" name="attendee[]" value="<?= $attendee['users_id']?>"><?=$attendee['first']." ".$attendee['last']?></input><br>
+                        <?php }?>
+                    </form>
+                </div>
+
+                <h4>Agenda</h4><div class="Agenda"><?=$agenda['agenda']?></div>
+
+                <h4>Meeting Follow Ups</h4>
+                <div class="FollowUps">
+                    <form class="followtable" method="post" action="/main/updatefollows/<?=$agenda['id']?>">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Owner</th>
+                                    <th>Follow Up</th>
+                                    <th>Due</th>
+                                    <th>Done?</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                if(empty($followups)){ echo "This meeting doesn't have any follow ups";
+                                } ?>
+                                    <?php if(!empty($followups)){
+                                  foreach($followups as $follow){ ?>
+                                    <tr>
+                                        <td><?=$follow['first']?><?=$follow['last']?></td>
+                                        <td><?=$follow['followup']?></td>
+                                        <td><?= date('F m, Y',strtotime($follow['duedate']))?></td>
+                                        <td><?=$follow['followstatus']?></td>
+                                    </tr>
+                                    <?php }
+                                }?>
+                            </tbody>
+                        </table>
+                    </form><!--end followups form-->
+                </div><!--end follow ups div-->
+            </div><!--end agenda div-->
+        </div><!--end notes container div-->
+    </div><!--end background div-->
 
     <!-- JS -->
-    <script type="text/javascript" src="/assets/js/jquery-3.1.0.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script src="https://cdn.tinymce.com/4/tinymce.min.js"></script>
-
+    <script async src="/assets/js/bootstrap.min.js"></script>
+    <script async type="text/javascript" src="/assets/js/tinymce/tinymce.minified.js"></script>
     <script>
         $(document).ready(function() {
             var max_fields = 30; //maximum input boxes allowed
@@ -49,100 +113,17 @@
                     );
                 }
             });
-
         });
-
         //rich text editor
         tinymce.init({
             selector: 'textarea',
             browser_spellcheck: true,
-            plugins: 'link advlist code spellchecker paste textcolor colorpicker visualchars wordcount contextmenu visualblocks insertdatetime hr searchreplace',
+            plugins: 'link advlist spellchecker paste textcolor colorpicker wordcount contextmenu hr',
             advlist_bullet_styles: "default circle disc square",
             menubar: "edit view insert",
-            toolbar: 'undo redo |  bold italic | bullist numlist | styleselect | alignleft aligncenter alignright | code | spellchecker | paste | forecolor backcolor | visualchars | link | visualblocks | insertdatetime | searchreplace | fontselect |  fontsizeselect',
+            toolbar: 'undo redo |  bold italic | bullist numlist | styleselect | alignleft aligncenter alignright | spellchecker | paste | forecolor backcolor | link | fontselect |  fontsizeselect',
             fontsize_formats: "8pt 10pt 12pt 14pt 18pt 24pt 36pt",
         });
     </script>
-
-</head>
-<!-- including header partial -->
-<?php include_once("header.php"); ?>
-<!-- end header partial -->
-
-<body>
-    </div>
-    <div id="background">
-        <div class="emailportal">
-            <form method="post" action="/apis/createPDF/<?=$agenda['id']?>">
-                <input type="submit" name="PDF" value="Create PDF"></input>
-            </form><br>
-        </div>
-
-        <div id="notes-container">
-            <div id="agenda">
-                <h2 id="meetingname">  <?=$agenda['name']?></h2>
-                <ul id="date">
-                    <li><?=date('l F d Y',strtotime($agenda['date']))?></li>
-                    <li><?= date("g:i a", strtotime($agenda['start']))?> - <?= date("g:i a", strtotime($agenda['end']))?></li>
-                </ul>
-                <h4>Objectives</h4>
-                <div class="objectives">
-                    <?=$agenda['objective']?>
-                </div>
-
-                <h4>Goals</h4>
-                <div class="goals">
-                    <?=$agenda['goals']?>
-                </div>
-
-                <h4>Attendees</h4>
-                <div class="attendees">
-
-                    <form class="attendees" method="post" action="/main/attendance/<?=$attendees[0]['meetings_id']?>">
-                        <?php foreach($attendees as $attendee){?>
-                        <input type="checkbox" name="attendee[]" value="<?= $attendee['users_id']?>"><?=$attendee['first']." ".$attendee['last']?></input><br>
-                        <?php }?>
-                    </form>
-                </div>
-
-                <h4>Agenda</h4>
-                <div class="Agenda">
-                    <?=$agenda['agenda']?>
-                </div>
-
-                <h4>Meeting Follow Ups</h4>
-
-                <div class="FollowUps">
-                    <form class="followtable" method="post" action="/main/updatefollows/<?=$agenda['id']?>">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Owner</th>
-                                    <th>Follow Up</th>
-                                    <th>Due</th>
-                                    <th>Done?</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                if(empty($followups)){ echo "This meeting doesn't have any follow ups";
-                                } ?>
-                                    <?php if(!empty($followups)){
-                                  foreach($followups as $follow){ ?>
-                                    <tr>
-                                        <td><?=$follow['first']?><?=$follow['last']?></td>
-                                        <td><?=$follow['followup']?></td>
-                                        <td><?= date('F m, Y',strtotime($follow['duedate']))?></td>
-                                        <td><?=$follow['followstatus']?></td>
-                                    </tr>
-                                    <?php }
-                                }?>
-                </div>
-            </div>
-            </table>
-            </form>
-        </div>
-
-    </div>
 </body>
 </html>

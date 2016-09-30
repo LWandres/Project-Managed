@@ -7,7 +7,6 @@ class access extends CI_Controller {
 		$this->load->model('displays');
 		$this->load->model('meetings');
 	}
-
 // Basic routes
 	public function index(){
 		$this->load->view('welcome');
@@ -33,6 +32,7 @@ class access extends CI_Controller {
 	      redirect('/access/regpage');
 	    }
 	}
+
 	public function register(){
 		$is_valid = $this->users->register($this->input->post());
 		if($is_valid[0] == 'valid'){
@@ -50,6 +50,7 @@ class access extends CI_Controller {
 			redirect('/access/regpage');
 		}
 	}
+
 	public function logout(){
 		$this->session->unset_userdata('id');
 		$this->session->unset_userdata('first');

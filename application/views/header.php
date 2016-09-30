@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
 	<title>Project Managed</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="description" content="Project Managed Website">
 	<meta name="keywords" content="PMP, Project Management">
 	<meta name="author" content="Laura Wandres">
@@ -11,22 +12,11 @@
   	<!-- stylesheets -->
 	<link rel="stylesheet" type="text/css" href="/assets/css/welcome.css">
 	<link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/assets/css/jquery-ui.css">
+
 	<!-- fonts -->
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+	<!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'> -->
 	<link href='https://fonts.googleapis.com/css?family=Raleway:300,400' rel="stylesheet">
-
-  	<!-- JS -->
-	<script src="/assets/js/jquery-2.2.4.min.js"></script>
-
-	<!-- end fonts -->
-	<script>
-		$(document).ready(function(){
-			$(".responsive-menu").hide();
-			$("#menu-btn").click(function(){
-				$(".responsive-menu").toggle();
-			});
-		});
-	</script>
 
 </head>
 <body>
@@ -62,3 +52,16 @@
 			</div>
 			<!-- end of responsive menu -->
     </div>
+
+	<!-- JS files-->
+	<script async src="/assets/js/jquery-2.2.4.min.js"></script>
+	<script type="text/javascript" src="/assets/js/jquery-3.1.0.min.js"></script>
+
+	<script>
+		$(document).ready(function(){
+			$(".responsive-menu").hide();
+			$("#menu-btn").click(function(){
+				$(".responsive-menu").toggle();
+			});
+		});
+	</script>

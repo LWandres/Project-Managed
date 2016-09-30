@@ -107,12 +107,12 @@ $(document).ready(function(){
 
     });
 
-        tinymce.init({
-          selector:'.richtext',
-          browser_spellcheck: true,
-          plugins: 'link advlist code spellchecker paste textcolor colorpicker visualchars wordcount contextmenu visualblocks insertdatetime hr searchreplace',
-          advlist_bullet_styles: "default circle disc square",
-          menubar: "edit view insert",
-          toolbar: 'undo redo |  bold italic | bullist numlist | styleselect | alignleft aligncenter alignright | code | spellchecker | paste | forecolor backcolor | visualchars | link | visualblocks | insertdatetime | searchreplace | fontselect |  fontsizeselect',
-          fontsize_formats: "8pt 10pt 12pt 14pt 18pt 24pt 36pt",
-        });
+    tinymce.init({
+        selector: 'textarea',
+        browser_spellcheck: true,
+        plugins: 'link advlist spellchecker paste textcolor colorpicker wordcount contextmenu hr',
+        advlist_bullet_styles: "default circle disc square",
+        menubar: "edit view insert",
+        toolbar: 'undo redo |  bold italic | bullist numlist | styleselect | alignleft aligncenter alignright | spellchecker | paste | forecolor backcolor | link | fontselect |  fontsizeselect',
+        fontsize_formats: "8pt 10pt 12pt 14pt 18pt 24pt 36pt",
+    });

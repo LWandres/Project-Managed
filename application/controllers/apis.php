@@ -3,15 +3,17 @@ require (BASEPATH.'libraries/PHPMailerAutoload.php');
 require(BASEPATH.'libraries/class.phpmailer.php');
 //Main controller for external integrations
 class apis extends CI_Controller {
-		public function __construct(){
-			parent::__construct();
-			$this->load->model('users');
-			$this->load->model('displays');
-			$this->load->model('meetings');
-		}
+	public function __construct(){
+		parent::__construct();
+		$this->load->model('users');
+		$this->load->model('displays');
+		$this->load->model('meetings');
+	}
+
 	//email follow up button from the dashboard.
 	public function emailfollowup($meetid){
 		$followups = $this->meetings->get_emailfollowups($meetid);
+		//send one email per meeting follow up
 		foreach ($followups as $task){
 			$email_to = $task['email'];
 			$followup = $task['followup'];
@@ -48,6 +50,7 @@ class apis extends CI_Controller {
 		$attendees= $this->meetings->get_participants($meetid);
 		$recipients=$this->users->sendemails($meetid);
 		$mail = new PHPMailer;
+		//send email to each listed meeting attendee
 		foreach ($recipients as $recipient => $value){
 			if($value['email'] != null){
 				$mail->addAddress(''.$value['email'].'');
@@ -79,10 +82,12 @@ class apis extends CI_Controller {
 		$agenda= $this->meetings->get_agenda($meetid);
 		$attendees= $this->meetings->get_participants($meetid);
 		$formatted_attendees = '';
+
 		foreach($attendees as $attendee){
 		    $name = $attendee['first']. " ". $attendee['last']. " - ". $attendee['email'];
 		    $formatted_attendees = $formatted_attendees .$name. " , ";
 		}
+
 		$followups = $this->meetings->get_followups($meetid);
 		  // Set parameters
 		$apikey = '79e27278-d41d-4ff4-8481-a6e802ea1730';
@@ -200,5 +205,5 @@ class apis extends CI_Controller {
 		echo $result;
 		redirect('/display/loaddashboard');
 		}
-	}
+	}//ends APIs controller
 ?>

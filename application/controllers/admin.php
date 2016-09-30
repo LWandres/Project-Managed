@@ -10,11 +10,11 @@ class admin extends CI_Controller {
 
 	//edit link on dashboard
 	public function edit($id){
-  		$agenda= $this->meetings->get_agenda($id);
-  		$attendees= $this->meetings->get_participants($id);
- 		$followups= $this->meetings->get_followups($id);
- 		$followups1= "This meeting does not have any followups";
-  		$data=array(
+  		$agenda = $this->meetings->get_agenda($id);
+  		$attendees = $this->meetings->get_participants($id);
+ 		$followups = $this->meetings->get_followups($id);
+ 		$followups1 = "This meeting does not have any followups";
+  		$data = array(
   			'agenda'=>$agenda,
  			'attendees'=>$attendees,
  			'attendees'=>$attendees,
@@ -65,7 +65,7 @@ class admin extends CI_Controller {
 		$this->load->view('meetingnotes',$data);
 	}
 
-	//View notes hyperlink on dashboard
+	//notes for emails
 	public function viewnotesemail($id){
 		$notes = $this->meetings->get_agenda($id);
 		$attendees = $this->meetings->get_participants($id);
@@ -78,7 +78,4 @@ class admin extends CI_Controller {
 			'followups'=>$followups);
 		$this->load->view('meetingnotesportal',$data);
 	}
-
-
-
-}
+}//closes controller

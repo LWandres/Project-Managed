@@ -1,10 +1,10 @@
 # Project-Managed
 
-Inspired by years as an IT project manager, I conceptualized and created a web-application that helps users automate tedious project management tasks. 
-The main goal: Simply PM processes, and allow PMs to use their time focused on overarching project goals, instead of stuck in email.
+Inspired by years as an IT project manager, I conceptualized and created a web-application that helps users automate tedious project management tasks.
+The main goal: Simplfy PM processes, and allow PMs to use their time focused on overarching project goals, instead of stuck in email.
 
 Technologies Used: PHP, SQL, PHPmailer (SMTP), PDF API, Rich-Text Editor, jQuery, BootStrap, HTML/CSS
-
+<img src="/assets/images/PMManaged.png" alt="PMManaged.png"><br>
 <b>From the site users can:</b>
 <ul>
   <li>Create & store centralized meeting agendas</li>
@@ -17,7 +17,7 @@ Technologies Used: PHP, SQL, PHPmailer (SMTP), PDF API, Rich-Text Editor, jQuery
 Want to see Project Managed in action? Log in with the Demo User below to try it out:<br>
     - Email: AJones@pmmanaged.com<br>
     - Password: pmmanaged<br>
-    
+
 <b>Quick Walkthrough:</b>
 - Register and Login through the navigation menu
 - Your homepage is the Dashboard:
@@ -34,5 +34,5 @@ Want to see Project Managed in action? Log in with the Demo User below to try it
     <li> <b>Archive</b>- allows you to clean clutter from your homepage, while still having access to older agenda notes.</li>
     <li> <b>Followups</b> - allows you to automate and track upcoming followups that you own, thanks to followups documented in earlier meeting notes.</li>
   </ul>
-  
+
   Thanks and hope you enjoy looking around the site!
